@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.Map;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/admin/api/user")
+@RequestMapping("/admin/api/profile")
 public class ProfileController {
     private IProfileService profileService;
     private IUserService userService;
 
-    @PostMapping("/save/profile")
+    @PostMapping("/save")
     public ResponseEntity<String> saveProfile (@RequestParam String username, @RequestBody Profile profile) {
         Optional<User> user_ = userService.findById(username);
         if (user_.isPresent()) {
@@ -35,7 +36,7 @@ public class ProfileController {
         }
 
     }
-    @GetMapping("/get/profile")
+    @GetMapping("/get")
     public ResponseEntity<Map> getProfile(@RequestParam Long id) {
         if (profileService.findById(id).isPresent()) {
             Profile profile = profileService.findById(id).get();
@@ -47,5 +48,19 @@ public class ProfileController {
             map.put("profile not found", "try another");
             return ResponseEntity.ok(map);
         }
+    }
+    @PutMapping("/update")
+    public ResponseEntity<String> updateProfile(@RequestBody Profile profile){
+        if(profileService.findById(profile.getId()).isPresent()){
+            profileService.save(profile);
+            return new ResponseEntity<>("Profile updated", HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>("Profile not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<Set<Profile>> getAllProfiles(){
+        return new ResponseEntity<>(profileService.findAll(), HttpStatus.OK);
     }
 }
