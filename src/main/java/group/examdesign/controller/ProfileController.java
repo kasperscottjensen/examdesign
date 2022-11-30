@@ -17,7 +17,7 @@ import java.util.Set;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/admin/api/profile")
+@RequestMapping("/user/api/profile")
 public class ProfileController {
     private IProfileService profileService;
     private IUserService userService;
@@ -36,8 +36,8 @@ public class ProfileController {
         }
 
     }
-    @GetMapping("/get")
-    public ResponseEntity<Map> getProfile(@RequestParam Long id) {
+    @GetMapping("/find")
+    public ResponseEntity<Map> findProfile(@RequestParam Long id) {
         if (profileService.findById(id).isPresent()) {
             Profile profile = profileService.findById(id).get();
             Map<String, String> map = new HashMap<>();
@@ -59,8 +59,8 @@ public class ProfileController {
         }
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<Set<Profile>> getAllProfiles(){
+    @GetMapping("/findAll")
+    public ResponseEntity<Set<Profile>> findAllProfiles(){
         return new ResponseEntity<>(profileService.findAll(), HttpStatus.OK);
     }
 }

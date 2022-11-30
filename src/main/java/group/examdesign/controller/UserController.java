@@ -1,5 +1,7 @@
 package group.examdesign.controller;
 import group.examdesign.model.User;
+import group.examdesign.service.IProfileService;
+import group.examdesign.service.IUserService;
 import group.examdesign.service.ProfileService;
 import group.examdesign.service.UserService;
 import lombok.AllArgsConstructor;
@@ -15,8 +17,8 @@ import java.util.Set;
 @RequestMapping("/admin/api/user")
 public class UserController {
 
-    private UserService userService;
-    private ProfileService profileService;
+    private IUserService userService;
+    private IProfileService profileService;
     private PasswordEncoder encoder;
 
     @GetMapping("/findall")
