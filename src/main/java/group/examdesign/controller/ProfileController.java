@@ -23,16 +23,16 @@ public class ProfileController {
     private IUserService userService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> saveProfile (@RequestParam String username, @RequestBody Profile profile) {
-        Optional<User> user_ = userService.findById(username);
+    public ResponseEntity<String> saveProfile (@RequestBody Profile profile) {
+        Optional<User> user_ = userService.findById(profile.getUser().getUsername());
         if (user_.isPresent()) {
             User user = user_.get();
             profile.setUser(user);
             profileService.save(profile);
 
-            return new ResponseEntity<>("Event created: " + profile.getFullName(), HttpStatus.OK);
+            return new ResponseEntity<>("Profile created: " + profile.getFullName(), HttpStatus.OK);
         }else {
-            return new ResponseEntity<>("Event NOT created: " + profile.getFullName(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Profile NOT created: " + profile.getFullName(), HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -51,7 +51,10 @@ public class ProfileController {
     }
     @PutMapping("/update")
     public ResponseEntity<String> updateProfile(@RequestBody Profile profile){
-        if(profileService.findById(profile.getId()).isPresent()){
+        Optional<Profile> profiletoCheck = profileService.findById(profile.getId());
+        if(profiletoCheck.isPresent()){
+            Profile profile1 = profiletoCheck.get();
+            profile.setUser(profile1.getUser());
             profileService.save(profile);
             return new ResponseEntity<>("Profile updated", HttpStatus.OK);
         }else {

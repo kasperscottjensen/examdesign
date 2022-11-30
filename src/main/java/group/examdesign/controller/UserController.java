@@ -52,13 +52,16 @@ public class UserController {
         }
     }
 
+    //Skal vi ikke lige gennemgå denne sammen torsdag?
     @DeleteMapping("/delete")
     public ResponseEntity<User> delete(@RequestBody User user) {
-        if (userService.findById(user.getUsername()).isPresent()) {
-            if(profileService.findByUser_Username(user.getUsername()).isPresent()){
+        Optional<User> user1 = userService.findById(user.getUsername());
+        if (user1.isPresent()) {
+            if(profileService.findByUser_Username(user1.get().getUsername()).isPresent()){
                 profileService.deleteByUser_Username(user.getUsername());
             }
-                userService.deleteById(user.getUsername());
+                user1.get().setEnabled(false);
+                //userService.deleteById(user.getUsername());
                 return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

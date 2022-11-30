@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,5 +27,9 @@ public class User {
     @OneToOne(mappedBy = "user")
     @JsonIgnore
     private Profile profile;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private Set<Wishes> wishes;
 
 }
