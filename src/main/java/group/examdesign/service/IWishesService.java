@@ -1,4 +1,6 @@
 package group.examdesign.service;
 
-public interface IWishesService {
+import group.examdesign.model.Wishes;
+
+public interface IWishesService extends ICrudService<Wishes, Long> {
 }
