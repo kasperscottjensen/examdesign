@@ -1,5 +1,6 @@
 package group.examdesign.controller;
 import group.examdesign.model.User;
+import group.examdesign.service.ProfileService;
 import group.examdesign.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.util.Set;
 public class UserController {
 
     private UserService userService;
+    private ProfileService profileService;
     private PasswordEncoder encoder;
 
     @GetMapping("/findall")
@@ -51,8 +53,11 @@ public class UserController {
     @DeleteMapping("/delete")
     public ResponseEntity<User> delete(@RequestBody User user) {
         if (userService.findById(user.getUsername()).isPresent()) {
-            userService.deleteById(user.getUsername());
-            return new ResponseEntity<>(HttpStatus.OK);
+            if(profileService.findByUser_Username(user.getUsername()).isPresent()){
+                profileService.deleteByUser_Username(user.getUsername());
+            }
+                userService.deleteById(user.getUsername());
+                return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

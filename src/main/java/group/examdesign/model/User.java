@@ -1,4 +1,5 @@
 package group.examdesign.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,5 +22,9 @@ public class User {
     private boolean enabled;
     @OneToOne(cascade = CascadeType.ALL)
     private Authority authority;
+
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private Profile profile;
 
 }
