@@ -4,6 +4,7 @@ import group.examdesign.model.User;
 import group.examdesign.repository.IUserRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
@@ -13,6 +14,7 @@ public class UserService implements IUserService {
 
     private AuthorityService authService;
     private IUserRepo userRepo;
+    private PasswordEncoder encoder;
 
     @Override
     public List<User> findAll() {
@@ -29,6 +31,9 @@ public class UserService implements IUserService {
 
     @Override
     public void save(User user) {
+        if (user.getPassword() != null) {
+            user.setPassword(encoder.encode(user.getPassword()));
+        }
         userRepo.save(user);
     }
 

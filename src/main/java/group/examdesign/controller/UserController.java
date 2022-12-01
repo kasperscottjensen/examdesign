@@ -5,7 +5,6 @@ import group.examdesign.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ public class UserController {
 
     private UserService userService;
     private ProfileService profileService;
-    private PasswordEncoder encoder;
 
     @GetMapping("/findall")
     public ResponseEntity<List<User>> findAll() {
@@ -44,7 +42,6 @@ public class UserController {
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            user.setPassword(encoder.encode(user.getPassword()));
             userService.save(user);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         }
