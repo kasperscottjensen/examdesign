@@ -4,9 +4,8 @@ import group.examdesign.model.User;
 import group.examdesign.repository.IUserRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+
+import java.util.*;
 
 @AllArgsConstructor
 @Service
@@ -16,16 +15,16 @@ public class UserService implements IUserService {
     private IUserRepo userRepo;
 
     @Override
-    public Set<User> findAll() {
-        Set<User> set = new HashSet<>(userRepo.findAll());
-        for(User user : set) {
+    public List<User> findAll() {
+        List<User> list = new ArrayList<>(userRepo.findAll());
+        for(User user : list) {
             if (authService.findById(user.getUsername()).isPresent()) {
                 user.setAuthority(authService.findById(user.getUsername()).get());
             } else {
                 user.setAuthority(new Authority());
             }
         }
-        return set;
+        return list;
     }
 
     @Override

@@ -3,9 +3,8 @@ import group.examdesign.model.Authority;
 import group.examdesign.repository.IAuthorityRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+
+import java.util.*;
 
 @AllArgsConstructor
 @Service
@@ -14,8 +13,8 @@ public class AuthorityService implements IAuthorityService {
     private IAuthorityRepo authRepo;
 
     @Override
-    public Set<Authority> findAll() {
-        return new HashSet<>(authRepo.findAll());
+    public List<Authority> findAll() {
+        return new ArrayList<>(authRepo.findAll());
     }
 
     @Override
