@@ -3,8 +3,8 @@ class Atablehandler {
     constructor() {
 
     }
-/*
-    async allusers() {
+
+/*    async allusers() {
         let users = await aapicaller.get("/user/findall");
         for (let index in users) {
             let entry = users[index];
@@ -26,7 +26,9 @@ class Atablehandler {
             $('#allusers-table').append(row);
         };
     }
-*/
+
+ */
+
 
     async allusers() {
         let users = await aapicaller.get("/user/findall");
@@ -42,7 +44,7 @@ class Atablehandler {
                     <div  data-bs-toggle="modal" data-bs-target="#edituser-modal"> <button class="btn btn-primary" onclick="atablehandler.setEditUserInformation(this.closest('tr'))">Opdater</button> </div>
                     </td>
                     <td>
-                        <button class="btn btn-tertiary text-left ps-0"><a onclick="atablehandler.deleteuser(this.closest('tr'))">| DELETE |</a></button>
+                        <button class="btn btn-tertiary text-left ps-0"><a onclick="atablehandler.deleteuser(this.closest('tr'))">Disable</a></button>
                     </td>
                 <tr>`;
             $('#allusers-table').append(row);
