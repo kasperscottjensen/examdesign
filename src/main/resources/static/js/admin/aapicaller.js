@@ -29,6 +29,24 @@ class Aapicaller {
         }     
     }
 
+    async put(json, url) {
+        try {
+            event.preventDefault();
+            await fetch(api + url, {
+                method: 'PUT',
+                headers:
+                    {
+                        'Content-Type': 'application/json'
+                    },
+                body: json
+            }).then(function() {
+                location.reload();
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async delete(json, url) {
         try {
             event.preventDefault();

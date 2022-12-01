@@ -15,7 +15,7 @@ class Ajsonconstructor {
                     "authority": formdata.authority
                 }
             }
-        aapicaller.post(JSON.stringify(data), "/user/save");
+            aapicaller.post(JSON.stringify(data), "/user/save");
     }
 
     deleteuser(username) {
@@ -24,6 +24,35 @@ class Ajsonconstructor {
                 "username": username
             }
         aapicaller.delete(JSON.stringify(data), "/user/delete");
+    }
+
+    async edituser(edituserformdata) {
+        let edituserdata;
+        if(edituserformdata.password === ""){
+            edituserdata =
+                {
+                    "username": edituserformdata.editusername,
+                    "enabled": edituserformdata.edituserenabled,
+                    "authority": {
+                        "username": edituserformdata.editusername,
+                        "authority": edituserformdata.edituserauthority
+                    }
+                }
+        } else {
+            edituserdata =
+                {
+                    "username": edituserformdata.editusername,
+                    "enabled": edituserformdata.edituserenabled,
+                    "password": edituserformdata.edituserpassword,
+                    "authority": {
+                        "username": edituserformdata.editusername,
+                        "authority": edituserformdata.edituserauthority
+                    }
+                }
+        }
+
+            console.log(edituserdata);
+        aapicaller.put(JSON.stringify(edituserdata), "/user/update");
     }
 
 }
