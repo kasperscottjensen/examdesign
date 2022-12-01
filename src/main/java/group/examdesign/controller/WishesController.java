@@ -62,7 +62,7 @@ public class WishesController {
         Optional<Wishes> wishes1 = wishesService.findById(wishes.getId());
         if (wishes1.isPresent()) {
             wishesService.deleteById(wishes.getId());
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(wishes1.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
