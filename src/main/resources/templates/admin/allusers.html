@@ -50,10 +50,10 @@
 <!-- head end -->
 
 <!-- body -->
-<body class="bg-black" onload="atablehandler.allusers()">
+<body class="bg-blue" onload="atablehandler.allusers()">
     
     <!-- content -->
-    <div class="container-fluid full-height text-white">
+    <div class="container-fluid full-height">
         
         <!-- header -->
         <div class="row text-center">
@@ -62,7 +62,7 @@
         <!-- header end -->
 
         <!-- users table -->
-        <div class="row text-white px-5">
+        <div class="row px-5">
             <table id="allusers-table">
                 <thead>
                     <tr>
@@ -84,7 +84,6 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-
                         <form id="modal-user-edit" onsubmit="aformhandler.edituser()">
                             <div id="edituser-username-group" class="form-group">
                                 <label for="edituser-username">Username</label>
@@ -108,11 +107,11 @@
                                         <option  id="authority-admin" value="ROLE_ADMIN">ROLE_ADMIN</option>
                                     </select>
                                 </div>
-                                <button class="btn btn-success mt-2"  type="submit">Opdater</button>
+                                <div class="modal-footer justify-content-center">
+                                    <button class="btn btn-success mt-2"  type="submit">Opdater</button>
+                                    <button type="button" class="btn btn-danger modal-btn" data-bs-dismiss="modal">Annuller</button>
+                                </div>
                             </form>
-                        </div>
-                        <div class="modal-footer justify-content-center">
-                            <button type="button" class="btn btn-secondary modal-btn" data-bs-dismiss="modal">Luk</button>
                         </div>
                     </div>
                 </div>

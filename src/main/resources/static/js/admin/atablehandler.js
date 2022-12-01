@@ -4,32 +4,6 @@ class Atablehandler {
 
     }
 
-/*    async allusers() {
-        let users = await aapicaller.get("/user/findall");
-        for (let index in users) {
-            let entry = users[index];
-            let row =
-                `<tr>
-                    <td>${entry.username}</td>
-                    <td>${entry.enabled}</td>
-                    <td>${entry.password}</td>
-                    <td>${entry.authority.authority}</td>
-                    <td>
-                        <button class="btn btn-tertiary text-left ps-0">
-                        <a href="/admin/edituser" onclick="atablehandler.getuserinformationbyid(${entry.username})">| EDIT |</a>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-tertiary text-left ps-0"><a onclick="atablehandler.deleteuser(this.closest('tr'))">| DELETE |</a></button>
-                    </td>
-                <tr>`;
-            $('#allusers-table').append(row);
-        };
-    }
-
- */
-
-
     async allusers() {
         let users = await aapicaller.get("/user/findall");
         for (let index in users) {
@@ -41,12 +15,12 @@ class Atablehandler {
                     <td>${entry.password}</td>
                     <td>${entry.authority.authority}</td>
                     <td>
-                    <div  data-bs-toggle="modal" data-bs-target="#edituser-modal"> <button class="btn btn-primary" onclick="atablehandler.setEditUserInformation(this.closest('tr'))">Opdater</button> </div>
+                    <div  data-bs-toggle="modal" data-bs-target="#edituser-modal"> <button class="btn btn-tertiary" onclick="atablehandler.setEditUserInformation(this.closest('tr'))">Opdater</button> </div>
                     </td>
                     <td>
                         <button class="btn btn-tertiary text-left ps-0"><a onclick="atablehandler.deleteuser(this.closest('tr'))">Disable</a></button>
                     </td>
-                <tr>`;
+                </tr>`;
             $('#allusers-table').append(row);
         };
     }
