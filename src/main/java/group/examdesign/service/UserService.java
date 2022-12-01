@@ -3,8 +3,8 @@ import group.examdesign.model.Authority;
 import group.examdesign.model.User;
 import group.examdesign.repository.IUserRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @AllArgsConstructor
@@ -16,7 +16,7 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> findAll() {
-        List<User> list = new ArrayList<>(userRepo.findAll());
+        List<User> list = new ArrayList<>(userRepo.findAll(Sort.by(Sort.Direction.ASC, "username")));
         for(User user : list) {
             if (authService.findById(user.getUsername()).isPresent()) {
                 user.setAuthority(authService.findById(user.getUsername()).get());
