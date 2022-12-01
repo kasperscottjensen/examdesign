@@ -11,45 +11,45 @@ import java.util.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/user/api/profile")
+@RequestMapping("/user/api/profiles")
 public class ProfileController {
 
     private ProfileService profileService;
     private UserService userService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> saveProfile (@RequestBody Profile profile) {
-        Optional<User> user_ = userService.findById(profile.getUser().getUsername());
-        if (user_.isPresent()) {
+    public ResponseEntity<Profile> save(@RequestBody Profile profile) {
+        Optional<User> user1 = userService.findById(profile.getUser().getUsername());
+        if (user1.isPresent()) {
             profileService.save(profile);
-            return new ResponseEntity<>("Profile created: " + profile.getFullName(), HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>("Profile NOT created: " + profile.getFullName(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(profile, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
     }
     @GetMapping("/find")
-    public ResponseEntity<Profile> findProfile(@RequestBody Profile profile) {
+    public ResponseEntity<Profile> find(@RequestBody Profile profile) {
         if (profileService.findById(profile.getUsername()).isPresent()) {
             Profile profileToFind = profileService.findById(profile.getUsername()).get();
             return new ResponseEntity<>(profileToFind, HttpStatus.OK);
-        }else {
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     @PutMapping("/update")
-    public ResponseEntity<String> updateProfile(@RequestBody Profile profile){
+    public ResponseEntity<Profile> update(@RequestBody Profile profile) {
         Optional<Profile> profiletoCheck = profileService.findById(profile.getUsername());
         if(profiletoCheck.isPresent()){
             profileService.save(profile);
-            return new ResponseEntity<>("Profile updated", HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>("Profile not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(profile, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<Profile>> findAllProfiles(){
+    public ResponseEntity<List<Profile>> findAll() {
         return new ResponseEntity<>(profileService.findAll(), HttpStatus.OK);
     }
 
