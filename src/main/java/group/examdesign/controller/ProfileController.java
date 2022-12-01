@@ -23,10 +23,7 @@ public class ProfileController {
     public ResponseEntity<String> saveProfile (@RequestBody Profile profile) {
         Optional<User> user_ = userService.findById(profile.getUser().getUsername());
         if (user_.isPresent()) {
-            User user = user_.get();
-            profile.setUser(user);
             profileService.save(profile);
-
             return new ResponseEntity<>("Profile created: " + profile.getFullName(), HttpStatus.OK);
         }else {
             return new ResponseEntity<>("Profile NOT created: " + profile.getFullName(), HttpStatus.BAD_REQUEST);
@@ -34,20 +31,18 @@ public class ProfileController {
 
     }
     @GetMapping("/find")
-    public ResponseEntity<String> findProfile(@RequestBody Profile profile) {
+    public ResponseEntity<Profile> findProfile(@RequestBody Profile profile) {
         if (profileService.findByUsername(profile.getUsername()).isPresent()) {
             Profile profileToFind = profileService.findByUsername(profile.getUsername()).get();
-            return new ResponseEntity<>("Profile found", HttpStatus.OK);
+            return new ResponseEntity<>(profileToFind, HttpStatus.OK);
         }else {
-            return new ResponseEntity<>("Profile not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     @PutMapping("/update")
     public ResponseEntity<String> updateProfile(@RequestBody Profile profile){
         Optional<Profile> profiletoCheck = profileService.findByUsername(profile.getUsername());
         if(profiletoCheck.isPresent()){
-            Profile profile1 = profiletoCheck.get();
-            profile.setUser(profile1.getUser());
             profileService.save(profile);
             return new ResponseEntity<>("Profile updated", HttpStatus.OK);
         }else {
