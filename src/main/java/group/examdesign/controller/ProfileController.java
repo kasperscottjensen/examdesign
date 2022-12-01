@@ -19,8 +19,8 @@ public class ProfileController {
 
     @PostMapping("/save")
     public ResponseEntity<Profile> save(@RequestBody Profile profile) {
-        Optional<User> user1 = userService.findById(profile.getUser().getUsername());
-        if (user1.isPresent()) {
+        Optional<User> optUser = userService.findById(profile.getUser().getUsername());
+        if (optUser.isPresent()) {
             profileService.save(profile);
             return new ResponseEntity<>(profile, HttpStatus.OK);
         } else {
@@ -39,8 +39,8 @@ public class ProfileController {
     }
     @PutMapping("/update")
     public ResponseEntity<Profile> update(@RequestBody Profile profile) {
-        Optional<Profile> profiletoCheck = profileService.findById(profile.getUsername());
-        if(profiletoCheck.isPresent()){
+        Optional<Profile> optProfile = profileService.findById(profile.getUsername());
+        if(optProfile.isPresent()){
             profileService.save(profile);
             return new ResponseEntity<>(profile, HttpStatus.OK);
         } else {

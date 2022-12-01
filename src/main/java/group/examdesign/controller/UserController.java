@@ -49,11 +49,11 @@ public class UserController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<User> delete(@RequestBody User user) {
-        Optional<User> user1 = userService.findById(user.getUsername());
-        if (user1.isPresent()) {
-            user1.get().setEnabled(false);
-            userService.save(user1.get());
-            if (profileService.findById(user1.get().getUsername()).isPresent()) {
+        Optional<User> optUser = userService.findById(user.getUsername());
+        if (optUser.isPresent()) {
+            optUser.get().setEnabled(false);
+            userService.save(optUser.get());
+            if (profileService.findById(optUser.get().getUsername()).isPresent()) {
                 profileService.deleteById(user.getUsername());
             }
                 return new ResponseEntity<>(HttpStatus.OK);
