@@ -5,16 +5,15 @@ import group.examdesign.repository.IWishesRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+
 @AllArgsConstructor
 @Service
 public class WishesService implements IWishesService{
     private IWishesRepo wishesRepo;
     @Override
-    public Set<Wishes> findAll() {
-        return new HashSet<>(wishesRepo.findAll());
+    public List<Wishes> findAll() {
+        return new ArrayList<>(wishesRepo.findAll());
     }
 
     @Override

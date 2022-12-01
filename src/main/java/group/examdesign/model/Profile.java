@@ -1,5 +1,6 @@
 package group.examdesign.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,9 +16,8 @@ import java.sql.Date;
 @Table(name = "profiles")
 public class Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "username")
+    private String username;
     @Column(name = "Full_Name")
     private String fullName;
     @Column(name = "Worker_Role")
@@ -26,7 +26,9 @@ public class Profile {
     private String phone;
     @Column(name = "Date_hired")
     private Date hired;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne(mappedBy = "profile")
+    @JsonIgnore
     private User user;
 
 }

@@ -10,10 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Optional;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @AllArgsConstructor
 @RestController
@@ -37,21 +34,17 @@ public class ProfileController {
 
     }
     @GetMapping("/find")
-    public ResponseEntity<Map> findProfile(@RequestParam Long id) {
-        if (profileService.findById(id).isPresent()) {
-            Profile profile = profileService.findById(id).get();
-            Map<String, String> map = new HashMap<>();
-            map.put("profile found", profile.getFullName());
-            return ResponseEntity.ok(map);
+    public ResponseEntity<String> findProfile(@RequestBody Profile profile) {
+        if (profileService.findByUsername(profile.getUsername()).isPresent()) {
+            Profile profileToFind = profileService.findByUsername(profile.getUsername()).get();
+            return new ResponseEntity<>("Profile found", HttpStatus.OK);
         }else {
-            Map<String, String> map = new HashMap<>();
-            map.put("profile not found", "try another");
-            return ResponseEntity.ok(map);
+            return new ResponseEntity<>("Profile not found", HttpStatus.NOT_FOUND);
         }
     }
     @PutMapping("/update")
     public ResponseEntity<String> updateProfile(@RequestBody Profile profile){
-        Optional<Profile> profiletoCheck = profileService.findById(profile.getId());
+        Optional<Profile> profiletoCheck = profileService.findByUsername(profile.getUsername());
         if(profiletoCheck.isPresent()){
             Profile profile1 = profiletoCheck.get();
             profile.setUser(profile1.getUser());
@@ -63,7 +56,7 @@ public class ProfileController {
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<Set<Profile>> findAllProfiles(){
+    public ResponseEntity<List<Profile>> findAllProfiles(){
         return new ResponseEntity<>(profileService.findAll(), HttpStatus.OK);
     }
 }

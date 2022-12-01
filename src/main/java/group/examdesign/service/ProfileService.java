@@ -8,9 +8,7 @@ import group.examdesign.repository.IUserRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @AllArgsConstructor
 @Service
@@ -19,8 +17,8 @@ public class ProfileService implements IProfileService{
     private IProfileRepo profileRepo;
     //private UserService userService;
     @Override
-    public Set<Profile> findAll() {
-        return new HashSet<>(profileRepo.findAll());
+    public List<Profile> findAll() {
+        return new ArrayList<>(profileRepo.findAll());
     }
 
     @Override
@@ -41,8 +39,8 @@ public class ProfileService implements IProfileService{
     public void deleteByUser_Username(String username){
         profileRepo.deleteByUser_Username(username);
     }
-    public Optional<Profile> findByUser_Username(String username){
-        return profileRepo.findByUser_Username(username);
+    public Optional<Profile> findByUsername(String username){
+        return profileRepo.findByUsername(username);
     }
 
 }

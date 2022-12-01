@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -22,10 +24,10 @@ public class UserController {
     private PasswordEncoder encoder;
 
     @GetMapping("/findall")
-    public ResponseEntity<Set<User>> findAll() {
-        Set<User> set = userService.findAll();
-        if (!(set == null)) {
-            return new ResponseEntity<>(set, HttpStatus.OK);
+    public ResponseEntity<List<User>> findAll() {
+        List<User> list = userService.findAll();
+        if (!(list == null)) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -57,10 +59,11 @@ public class UserController {
     public ResponseEntity<User> delete(@RequestBody User user) {
         Optional<User> user1 = userService.findById(user.getUsername());
         if (user1.isPresent()) {
-            if(profileService.findByUser_Username(user1.get().getUsername()).isPresent()){
+            user1.get().setEnabled(false);
+            userService.save(user1.get());
+            if(profileService.findByUsername(user1.get().getUsername()).isPresent()){
                 profileService.deleteByUser_Username(user.getUsername());
             }
-                user1.get().setEnabled(false);
                 //userService.deleteById(user.getUsername());
                 return new ResponseEntity<>(HttpStatus.OK);
         } else {

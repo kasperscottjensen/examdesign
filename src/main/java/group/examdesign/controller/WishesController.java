@@ -9,5 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user/api/wishes")
 public class WishesController {
+
     private IWishesService wishesService;
+
+
 }
