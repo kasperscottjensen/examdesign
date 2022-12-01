@@ -32,8 +32,8 @@ public class ProfileController {
     }
     @GetMapping("/find")
     public ResponseEntity<Profile> findProfile(@RequestBody Profile profile) {
-        if (profileService.findByUsername(profile.getUsername()).isPresent()) {
-            Profile profileToFind = profileService.findByUsername(profile.getUsername()).get();
+        if (profileService.findById(profile.getUsername()).isPresent()) {
+            Profile profileToFind = profileService.findById(profile.getUsername()).get();
             return new ResponseEntity<>(profileToFind, HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -41,7 +41,7 @@ public class ProfileController {
     }
     @PutMapping("/update")
     public ResponseEntity<String> updateProfile(@RequestBody Profile profile){
-        Optional<Profile> profiletoCheck = profileService.findByUsername(profile.getUsername());
+        Optional<Profile> profiletoCheck = profileService.findById(profile.getUsername());
         if(profiletoCheck.isPresent()){
             profileService.save(profile);
             return new ResponseEntity<>("Profile updated", HttpStatus.OK);

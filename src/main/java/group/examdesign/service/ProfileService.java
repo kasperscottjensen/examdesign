@@ -6,6 +6,7 @@ import group.examdesign.model.User;
 import group.examdesign.repository.IProfileRepo;
 import group.examdesign.repository.IUserRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -18,7 +19,7 @@ public class ProfileService implements IProfileService{
     //private UserService userService;
     @Override
     public List<Profile> findAll() {
-        return new ArrayList<>(profileRepo.findAll());
+        return new ArrayList<>(profileRepo.findAll(Sort.by(Sort.Direction.ASC, "full_name")));
     }
 
     @Override
@@ -27,20 +28,13 @@ public class ProfileService implements IProfileService{
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         profileRepo.deleteById(id);
     }
 
     @Override
-    public Optional<Profile> findById(Long id) {
+    public Optional<Profile> findById(String id) {
         return profileRepo.findById(id);
-    }
-
-    public void deleteByUser_Username(String username){
-        profileRepo.deleteByUser_Username(username);
-    }
-    public Optional<Profile> findByUsername(String username){
-        return profileRepo.findByUsername(username);
     }
 
 }

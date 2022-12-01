@@ -6,7 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface IProfileRepo extends JpaRepository<Profile,Long> {
-    void deleteByUser_Username(String username);
-    Optional<Profile> findByUsername(String username);
+public interface IProfileRepo extends JpaRepository<Profile,String> {
 }
