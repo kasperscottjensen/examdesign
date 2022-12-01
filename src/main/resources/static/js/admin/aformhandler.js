@@ -10,11 +10,8 @@ class Aformhandler {
     }
 
     edituser() {
-        console.log("HELLO FROM FORMHANDLER");
-        console.log("HELLO FROM FORMHANDLER");
-        console.log("HELLO FROM FORMHANDLER");
-        console.log("HELLO FROM FORMHANDLER");
-        let formdata = document.getElementById("modal-user-edit").serializeJSON();
+        event.preventDefault();
+        let formdata = $('#modal-user-edit').serializeJSON();
         ajsonconstructor.edituser(formdata);
     }
 

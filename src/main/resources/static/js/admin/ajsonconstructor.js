@@ -26,19 +26,33 @@ class Ajsonconstructor {
         aapicaller.delete(JSON.stringify(data), "/user/delete");
     }
 
-    edituser(formdata) {
-        console.log("HELLO FROM JOSNCONSTRUCTOR");
-        let data =
-            {
-                "username": formdata.username,
-                "password": formdata.password,
-                "enabled": formdata.enabled,
-                "authority": {
-                    "username": formdata.username,
-                    "authority": formdata.authority
+    async edituser(edituserformdata) {
+        let edituserdata;
+        if(edituserformdata.password === ""){
+            edituserdata =
+                {
+                    "username": edituserformdata.editusername,
+                    "enabled": edituserformdata.edituserenabled,
+                    "authority": {
+                        "username": edituserformdata.editusername,
+                        "authority": edituserformdata.edituserauthority
+                    }
                 }
-            }
-        aapicaller.put(JSON.stringify(data), "/user/update");
+        } else {
+            edituserdata =
+                {
+                    "username": edituserformdata.editusername,
+                    "enabled": edituserformdata.edituserenabled,
+                    "password": edituserformdata.edituserpassword,
+                    "authority": {
+                        "username": edituserformdata.editusername,
+                        "authority": edituserformdata.edituserauthority
+                    }
+                }
+        }
+
+            console.log(edituserdata);
+        aapicaller.put(JSON.stringify(edituserdata), "/user/update");
     }
 
 }

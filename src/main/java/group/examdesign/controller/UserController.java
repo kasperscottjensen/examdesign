@@ -15,7 +15,6 @@ import java.util.Set;
 public class UserController {
 
     private UserService userService;
-    private PasswordEncoder encoder;
 
     @GetMapping("/findall")
     public ResponseEntity<Set<User>> findAll() {
@@ -42,7 +41,6 @@ public class UserController {
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            user.setPassword(encoder.encode(user.getPassword()));
             userService.save(user);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         }
@@ -60,24 +58,11 @@ public class UserController {
 
     @PutMapping("/update")
     public ResponseEntity<User> update(@RequestBody User user) {
-        System.out.println("HELLO FROM UPDATE");
         if (userService.findById(user.getUsername()).isPresent()) {
-            System.out.println("HELLO");
             userService.save(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-    @GetMapping("/findById/{username}")
-    public ResponseEntity<User> findById(@PathVariable("username") String username) {
-        if(userService.findById(username).isPresent()) {
-            return new ResponseEntity<>(userService.findById(username).get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-    }
-
 }
