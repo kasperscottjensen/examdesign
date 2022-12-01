@@ -23,21 +23,26 @@
     <!-- imports end -->
     
     <!-- style -->
-    <!-- visual studio -->
+    <!-- visual studio
     <link href="../../static/css/style.css" rel="stylesheet">
+    -->
     <!-- spring boot -->
     <link href="/css/style.css" rel="stylesheet">
     <!-- style end -->
     
     <!-- js -->
-    <!-- visual studio -->
+    <!-- visual studio
     <script src="../../static/js/admin/aapicaller.js"></script>
     <script src="../../static/js/admin/atablehandler.js"></script>
     <script src="../../static/js/admin/ajsonconstructor.js"></script>
+    <script src="../../static/js/admin/aformhandler.js"></script>
+    -->
     <!-- spring boot -->
     <script src="/js/admin/aapicaller.js"></script>
     <script src="/js/admin/atablehandler.js"></script>
     <script src="/js/admin/ajsonconstructor.js"></script>
+    <script src="/js/admin/aformhandler.js"></script>
+
     <!-- js end -->
 
 </head>
@@ -73,6 +78,45 @@
             </table>
         </div>
         <!-- users table end -->
+
+        <div class="modal bg-dark bg-opacity-75 fade" tabindex="-1" role="dialog" id="edituser-modal">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <form id="modal-user-edit" onsubmit="aformhandler.edituser()">
+                            <div id="edituser-username-group" class="form-group">
+                                <label for="edituser-username">Username</label>
+                                <input type="text" class="form-control" id="edituser-username" name="edituser-usernamename" value="" required/>
+                            </div>
+                            <div id="edituser-password-group" class="form-group">
+                                <label for="edituser-password">Password</label>
+                                <input type="password" class="form-control" id="edituser-password" name="edituser-password" placeholder="Leave blank to keep the old password or enter new password"/>
+                            </div>
+                                <div id="edituser-enabled-group" class="form-group">
+                                    <label for="edituser-enabled">Enabled</label>
+                                    <select id="edituser-enabled" name="enabled" required>
+                                        <option id="enabled-true" value="true">Enabled</option>
+                                        <option id="enabled-false" value="false">Disabled</option>
+                                    </select>
+                                </div>
+                                <div id="edituser-authority-group" class="form-group">
+                                    <label for="edituser-authority">Role</label>
+                                    <select id="edituser-authority" name="authority" required>
+                                        <option  id="authority-user" value="ROLE_USER">ROLE_USER</option>
+                                        <option  id="authority-admin" value="ROLE_ADMIN">ROLE_ADMIN</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-success mt-2"  type="submit" data-bs-dismiss="modal">Opdater</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn btn-secondary modal-btn" data-bs-dismiss="modal">Luk</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         <!-- navigation -->
         <div class="row">
