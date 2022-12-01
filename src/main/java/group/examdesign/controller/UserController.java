@@ -1,7 +1,5 @@
 package group.examdesign.controller;
 import group.examdesign.model.User;
-import group.examdesign.service.IProfileService;
-import group.examdesign.service.IUserService;
 import group.examdesign.service.ProfileService;
 import group.examdesign.service.UserService;
 import lombok.AllArgsConstructor;
@@ -9,18 +7,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping("/admin/api/user")
 public class UserController {
 
-    private IUserService userService;
-    private IProfileService profileService;
+    private UserService userService;
+    private ProfileService profileService;
     private PasswordEncoder encoder;
 
     @GetMapping("/findall")
@@ -60,10 +56,9 @@ public class UserController {
         if (user1.isPresent()) {
             user1.get().setEnabled(false);
             userService.save(user1.get());
-            if(profileService.findById(user1.get().getUsername()).isPresent()){
+            if (profileService.findById(user1.get().getUsername()).isPresent()) {
                 profileService.deleteById(user.getUsername());
             }
-                //userService.deleteById(user.getUsername());
                 return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

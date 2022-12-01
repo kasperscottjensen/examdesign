@@ -1,15 +1,11 @@
 package group.examdesign.controller;
-
-import group.examdesign.model.Profile;
-import group.examdesign.model.User;
 import group.examdesign.model.Wishes;
-import group.examdesign.service.IUserService;
-import group.examdesign.service.IWishesService;
+import group.examdesign.service.UserService;
+import group.examdesign.service.WishesService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +14,8 @@ import java.util.Optional;
 @RequestMapping("/user/api/wishes")
 public class WishesController {
 
-    private IWishesService wishesService;
-    private IUserService userService;
+    private WishesService wishesService;
+    private UserService userService;
 
     @PostMapping("/save")
     public ResponseEntity<String> saveWishes (@RequestBody Wishes wishes) {
@@ -31,6 +27,7 @@ public class WishesController {
         }
 
     }
+
     @GetMapping("/find")
     public ResponseEntity<Wishes> findWish(@RequestBody Wishes wishes) {
         if (wishesService.findById(wishes.getId()).isPresent()) {
@@ -40,6 +37,7 @@ public class WishesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @PutMapping("/update")
     public ResponseEntity<Wishes> updateWish(@RequestBody Wishes wishes){
         if(wishesService.findById(wishes.getId()).isPresent()){
@@ -49,14 +47,17 @@ public class WishesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @GetMapping("/findAll")
     public ResponseEntity<List<Wishes>> findAllWishes(){
         return new ResponseEntity<>(wishesService.findAll(), HttpStatus.OK);
     }
+
     @GetMapping("/findAllByUser")
     public ResponseEntity<List<Wishes>> findAllWishesForUser(@RequestBody Wishes wishes){
         return new ResponseEntity<>(wishesService.findAllWishByUser_Username(wishes.getUser().getUsername()), HttpStatus.OK);
     }
+
     @DeleteMapping("/delete")
     public ResponseEntity<Wishes> delete(@RequestBody Wishes wishes) {
         Optional<Wishes> wishes1 = wishesService.findById(wishes.getId());
@@ -67,6 +68,7 @@ public class WishesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @DeleteMapping("/deleteAllByUser")
     public ResponseEntity<Wishes> deleteAllByUser(@RequestBody Wishes wishes) {
         List<Wishes> wishes1 = wishesService.findAllWishByUser_Username(wishes.getUser().getUsername());
@@ -79,4 +81,5 @@ public class WishesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 }

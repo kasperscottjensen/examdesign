@@ -1,12 +1,9 @@
 package group.examdesign.model;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-import java.awt.*;
 import java.sql.Date;
 
 @Getter
@@ -15,18 +12,18 @@ import java.sql.Date;
 @Entity
 @Table(name = "profiles")
 public class Profile {
+
     @Id
     @Column(name = "username")
     private String username;
-    @Column(name = "Full_Name")
+    @Column(name = "full_name")
     private String fullName;
-    @Column(name = "Worker_Role")
+    @Column(name = "worker_role")
     private String role;
-    @Column(name = "Phone_Number")
+    @Column(name = "phone_number")
     private String phone;
-    @Column(name = "Date_hired")
+    @Column(name = "date_hired")
     private Date hired;
-
     @OneToOne(mappedBy = "profile")
     @JsonIgnore
     private User user;

@@ -1,23 +1,21 @@
 package group.examdesign.controller;
-
 import group.examdesign.model.Profile;
 import group.examdesign.model.User;
-import group.examdesign.service.IProfileService;
-import group.examdesign.service.IUserService;
 import group.examdesign.service.ProfileService;
+import group.examdesign.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping("/user/api/profile")
 public class ProfileController {
-    private IProfileService profileService;
-    private IUserService userService;
+
+    private ProfileService profileService;
+    private UserService userService;
 
     @PostMapping("/save")
     public ResponseEntity<String> saveProfile (@RequestBody Profile profile) {
@@ -54,4 +52,5 @@ public class ProfileController {
     public ResponseEntity<List<Profile>> findAllProfiles(){
         return new ResponseEntity<>(profileService.findAll(), HttpStatus.OK);
     }
+
 }
