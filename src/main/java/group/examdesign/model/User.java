@@ -25,5 +25,7 @@ public class User {
     private Profile profile;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Wishes> wishes;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Shift> shifts;
 
 }

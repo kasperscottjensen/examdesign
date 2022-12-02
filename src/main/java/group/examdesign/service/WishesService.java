@@ -35,5 +35,4 @@ public class WishesService implements IWishesService {
     public List<Wishes> findAllWishByUser_Username(String username){
         return new ArrayList<>(wishesRepo.findAllWishByUser_Username(username, Sort.by(Sort.Direction.ASC, "date")));
     }
-
 }
