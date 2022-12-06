@@ -51,6 +51,7 @@ select {
 
 .btn-tertiary:hover {
     background-color: #F8C749 !important;
+    color: black;
 }
 
 .text-monoton {
@@ -69,6 +70,13 @@ select {
     padding-top: 0px !important;
 }
 
+.index-logo-sm {
+    max-height: 150px;
+    max-width: 150px;
+    padding-right: 3rem;
+    padding-top: 2rem;
+}
+
 .right-shadow {
     -webkit-box-shadow: 15px 0px 10px -5px rgba(0,0,0,0.25); 
     box-shadow: 15px 0px 10px -5px rgba(0,0,0,0.25);
@@ -78,6 +86,10 @@ select {
     max-width: 300px;
 }
 
-.nav-item a:active {
+.nav-item-active {
     background-color: #F8C749 !important;
+}
+
+.btn a:hover {
+    color: black;
 }
