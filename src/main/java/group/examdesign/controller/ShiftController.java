@@ -72,8 +72,8 @@ public class ShiftController {
         }
     }
 
-    @GetMapping("/findbydate")
-    public ResponseEntity<List<Shift>> findShiftsByDate(@RequestBody Date date){
+    @GetMapping("/findbydate/{date}")
+    public ResponseEntity<List<Shift>> findShiftsByDate(@PathVariable("date") Date date){
         List<Shift> list = shiftService.findShiftsByDate(date);
         if (list != null) {
             return new ResponseEntity<>(list, HttpStatus.OK);
@@ -82,10 +82,9 @@ public class ShiftController {
         }
     }
 
-    @GetMapping("/findbydateinterval")
-    public ResponseEntity<List<Shift>> findShiftsByDateInterval(@RequestBody DateInterval dateInterval){
-        Date dateStart = dateInterval.getStart();
-        Date dateEnd = dateInterval.getEnd();
+    @GetMapping("/findbydateinterval/{dateStart}/dateEnd")
+    public ResponseEntity<List<Shift>> findShiftsByDateInterval(@PathVariable("dateStart") Date dateStart, @PathVariable("dateEnd") Date dateEnd){
+
         List<Shift> list = shiftService.findShiftsByDateInterval(dateStart, dateEnd);
         if (list != null) {
             return new ResponseEntity<>(list, HttpStatus.OK);
@@ -93,13 +92,4 @@ public class ShiftController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-}
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-class DateInterval{
-    private Date start;
-    private Date end;
 }
