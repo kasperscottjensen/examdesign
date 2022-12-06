@@ -5,10 +5,8 @@ import group.examdesign.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +28,9 @@ public class UserGetController {
         }
     }
 
-    @GetMapping("/find")
-    public ResponseEntity<User> find(@RequestBody User user) {
-        Optional<User> optUser = userService.findById(user.getUsername());
+    @GetMapping("/find/{username}")
+    public ResponseEntity<User> find(@PathVariable String username) {
+        Optional<User> optUser = userService.findById(username);
         if (optUser.isPresent()) {
             return new ResponseEntity<>(optUser.get(), HttpStatus.OK);
         } else {
