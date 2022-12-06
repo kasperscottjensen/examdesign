@@ -1,12 +1,10 @@
 package group.examdesign.controller;
 import group.examdesign.model.User;
-import group.examdesign.service.ProfileService;
 import group.examdesign.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +14,6 @@ import java.util.Optional;
 public class UserGetController {
 
     private UserService userService;
-    private ProfileService profileService;
 
     @GetMapping("/findall")
     public ResponseEntity<List<User>> findAll() {
