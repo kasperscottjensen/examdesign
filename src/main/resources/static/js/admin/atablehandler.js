@@ -24,32 +24,34 @@ class Atablehandler {
             $('#allusers-table').append(row);
         };
     }
+
     deleteuser(row) {
         let username = row.children[0].innerHTML;
         ajsonconstructor.deleteuser(username);
     }
 
-   async setEditUserInformation(row){
+   async setEditUserInformation(row) {
+
         let username = row.children[0].innerHTML;
         let enabled = row.children[1].innerHTML;
         let authority = row.children[3].innerHTML;
 
         document.getElementById("edituser-username").value = username;
 
-       document.getElementById("enabled-true").removeAttribute("selected");
-       document.getElementById("enabled-false").removeAttribute("selected");
-       document.getElementById("authority-admin").removeAttribute("selected");
-       document.getElementById("authority-user").removeAttribute("selected");
+        document.getElementById("enabled-true").removeAttribute("selected");
+        document.getElementById("enabled-false").removeAttribute("selected");
+        document.getElementById("authority-admin").removeAttribute("selected");
+        document.getElementById("authority-user").removeAttribute("selected");
 
-        if(enabled === "true"){
+        if (enabled === "true") {
             document.getElementById("enabled-true").setAttribute('selected','selected')
         } else {
             document.getElementById("enabled-false").setAttribute('selected','selected')
         }
 
-        if(authority === "ROLE_ADMIN"){
+        if (authority === "ROLE_ADMIN") {
             document.getElementById("authority-admin").setAttribute('selected','selected')
-        }else {
+        } else {
             document.getElementById("authority-user").setAttribute('selected','selected')
         }
 

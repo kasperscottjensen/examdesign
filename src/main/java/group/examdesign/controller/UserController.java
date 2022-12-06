@@ -27,9 +27,9 @@ public class UserController {
         }
     }
 
-    @GetMapping("/find")
-    public ResponseEntity<User> find(@RequestBody User user) {
-        Optional<User> optUser = userService.findById(user.getUsername());
+    @GetMapping("/find/{username}")
+    public ResponseEntity<User> find(@PathVariable String username) {
+        Optional<User> optUser = userService.findById(username);
         if (optUser.isPresent()) {
             return new ResponseEntity<>(optUser.get(), HttpStatus.OK);
         } else {

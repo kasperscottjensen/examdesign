@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
+
+a, li, p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ubuntu', sans-serif;
+}
 
 a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: all .5s ease-in-out;
+    text-decoration: none !important;
+    color: black;
+    transition: ease-in-out all .3s;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: grey;
 }
 
 select {
@@ -15,6 +23,23 @@ select {
 
 .full-height {
     height: 100vh;
+}
+
+.btn-logout {
+    font-family: 'Ubuntu' !important;
+    background: none;
+    border: none;
+    box-shadow: none;
+    transition: ease-in-out all .3s;
+    padding-left: 0px;
+}
+
+.btn-logout:hover {
+    color: grey;
+}
+
+.btn {
+    transition: all .5s ease-in-out;
 }
 
 .btn-tertiary {
@@ -28,22 +53,31 @@ select {
     background-color: #F8C749 !important;
 }
 
-.btn {
-    transition: all .5s ease-in-out;
-}
-
 .text-monoton {
-    font-family: monoton;
-    font-weight: 700;
+    font-family: monoton !important;
+    font-weight: 700 !important;
 }
 
 .bg-blue {
     background-color: #CEEAEC;
 }
 
-.index-logo {
+.index-logo-md {
     max-height: 200px;
     max-width: 200px;
     padding: 3rem;
     padding-top: 0px !important;
+}
+
+.right-shadow {
+    -webkit-box-shadow: 15px 0px 10px -5px rgba(0,0,0,0.25); 
+    box-shadow: 15px 0px 10px -5px rgba(0,0,0,0.25);
+}
+
+.title-img {
+    max-width: 300px;
+}
+
+.nav-item a:active {
+    background-color: #F8C749 !important;
 }
