@@ -20,6 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/8fa6f6eb77.js" crossorigin="anonymous"></script>
     <!-- imports end -->
     
     <!-- style -->
@@ -28,40 +29,65 @@
     <!-- spring boot -->
     <link href="/css/style.css" rel="stylesheet">
     <!-- style end -->
-    
-    <!-- js -->
-    <!-- visual studio -->
-    <script src="../../static/js/user/user.js"></script>
-    <!-- spring boot -->
-    <script src="/js/user/user.js"></script>
-    <!-- js end -->
 
 </head>
 <!-- head end -->
 
 <!-- body -->
-<body class="bg-black">
+<body class="bg-blue">
     
     <!-- content -->
-    <div class="container-fluid full-height text-white">
-        
-        <!-- header -->
-        <div class="row text-center">
-            <h3 class="py-5">User Index</h3>
-        </div>
-        <!-- header end -->
+    <div class="container-fluid ms-0 text-black">
 
         <!-- navigation -->
-        
-        <!-- navigation end -->
-
-        <!-- logout -->
-        <div class="row text-white text-center">
-            <form th:action="@{/auth/logout}" method="post" id="logout-form">
-                <button type="submit" class="btn btn-tertiary pt-4">| TERMINATE SESSION |</button>
-            </form> 
+        <div class="col-2 right-shadow full-height">
+            <!-- title -->
+            <div class="row justify-content-center">
+                <img class="title-img py-4 pe-5" src="../../static/images/title-blue-bg.png">
+            </div>
+            <!-- tabs -->
+            <div class="row">
+                <ul class="text-decoration-none list-unstyled">
+                    <li class="ps-3">
+                        <a href="/userindex"><i class="fa-solid fa-building p-3"></i>Hjem</a>
+                    </li>
+                    <li class="ps-3">
+                        <a href="/checkinout"><i class="fa-solid fa-bell p-3"></i>Check ind / ud</a>
+                    </li>
+                    <li class="ps-3">
+                        <a href="/shiftschedule"><i class="fa-solid fa-calendar p-3"></i>Vagtskema</a>
+                    </li>
+                    <li class="ps-3">
+                        <a href="/newsfeed"><i class="fa-solid fa-comment p-3"></i>Nyhedsfeed</a>
+                    </li>
+                    <li class="ps-3">
+                        <a href="/marketplace"><i class="fa-solid fa-shopping-cart p-3"></i>Markedsplads</a>
+                    </li>
+                    <li class="ps-3">
+                        <a href="/wishes"><i class="fa-solid fa-star p-3"></i>Ønskeliste</a>
+                    </li>
+                    <li class="ps-3">
+                        <a href="/userstatistics"><i class="fa-solid fas fa-chart-pie p-3"></i>Statistik</a>
+                    </li>
+                    <li class="ps-3">
+                        <a href="/employees"><i class="fa-solid fas fa-users p-3"></i>Medarbejdere</a>
+                    </li>
+                    <li class="ps-3">
+                        <a href="/profile"><i class="fa-solid fas fa-user p-3"></i>Profil</a>
+                    </li>
+                    <li class="ps-3">
+                        <form th:action="@{/auth/logout}" method="post" id="logout-form">
+                            <button type="submit" class="btn-logout"><i class="fa-solid fas fa-sign-out p-3"></i>Log ud</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <!-- logo -->
+            <div class="row">
+                <p>hej</p>
+            </div>
         </div>
-        <!-- logout end -->
+        <!-- navigation end -->
 
     </div>
     <!-- content end -->
@@ -71,3 +97,11 @@
 
 </html>
 <!-- html end -->
+
+<!-- logout
+        <div class="row text-white text-center">
+            <form th:action="@{/auth/logout}" method="post" id="logout-form">
+                <button type="submit" class="btn btn-tertiary pt-4">| TERMINATE SESSION |</button>
+            </form> 
+        </div>
+        logout end -->
