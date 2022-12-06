@@ -18,14 +18,6 @@ class Ajsonconstructor {
             aapicaller.post(JSON.stringify(data), "/user/save");
     }
 
-    deleteuser(username) {
-        let data =
-            {
-                "username": username
-            }
-        aapicaller.delete(JSON.stringify(data), "/user/delete");
-    }
-
     async edituser(edituserformdata) {
         let edituserdata;
         if(edituserformdata.password === ""){

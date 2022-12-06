@@ -17,17 +17,9 @@ class Atablehandler {
                     <td>
                     <div  data-bs-toggle="modal" data-bs-target="#edituser-modal"> <button class="btn btn-tertiary" onclick="atablehandler.setEditUserInformation(this.closest('tr'))">Opdater</button> </div>
                     </td>
-                    <td>
-                        <button class="btn btn-tertiary text-left ps-0"><a onclick="atablehandler.deleteuser(this.closest('tr'))">Disable</a></button>
-                    </td>
                 </tr>`;
             $('#allusers-table').append(row);
         };
-    }
-
-    deleteuser(row) {
-        let username = row.children[0].innerHTML;
-        ajsonconstructor.deleteuser(username);
     }
 
    async setEditUserInformation(row) {
