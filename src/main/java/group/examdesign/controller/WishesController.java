@@ -20,7 +20,7 @@ public class WishesController {
 
     @PostMapping("/save")
     public ResponseEntity<Wishes> save(@RequestBody Wishes wishes) {
-        if (userService.findById(wishes.getUser().getUsername()).isPresent()) {
+        if (userService.findById(wishes.getProfile().getUsername()).isPresent()) {
             wishesService.save(wishes);
             return new ResponseEntity<>(wishes, HttpStatus.OK);
         } else {
@@ -29,10 +29,10 @@ public class WishesController {
 
     }
 
-    @GetMapping("/find")
-    public ResponseEntity<Wishes> find(@RequestBody Wishes wishes) {
-        if (wishesService.findById(wishes.getId()).isPresent()) {
-            Wishes wishToFind = wishesService.findById(wishes.getId()).get();
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Wishes> find(@PathVariable("id") Long id) {
+        if (wishesService.findById(id).isPresent()) {
+            Wishes wishToFind = wishesService.findById(id).get();
             return new ResponseEntity<>(wishToFind, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -56,23 +56,23 @@ public class WishesController {
 
     @GetMapping("/findAllByUser/{username}")
     public ResponseEntity<List<Wishes>> findAllByUser(@PathVariable String username){
-        return new ResponseEntity<>(wishesService.findAllWishByUser_Username(username), HttpStatus.OK);
+        return new ResponseEntity<>(wishesService.findAllWishByProfile_Username(username), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Wishes> delete(@RequestBody Wishes wishes) {
-        Optional<Wishes> wishes1 = wishesService.findById(wishes.getId());
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Wishes> delete(@PathVariable Long id) {
+        Optional<Wishes> wishes1 = wishesService.findById(id);
         if (wishes1.isPresent()) {
-            wishesService.deleteById(wishes.getId());
+            wishesService.deleteById(id);
             return new ResponseEntity<>(wishes1.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @DeleteMapping("/deleteAllByUser")
-    public ResponseEntity<Wishes> deleteAllByUser(@RequestBody Wishes wishes) {
-        List<Wishes> wishes1 = wishesService.findAllWishByUser_Username(wishes.getUser().getUsername());
+    @DeleteMapping("/deleteAllByUser/{username}")
+    public ResponseEntity<Wishes> deleteAllByUser(@PathVariable("username") String username) {
+        List<Wishes> wishes1 = wishesService.findAllWishByProfile_Username(username);
         if (wishes1 != null) {
             for (Wishes wishes2 : wishes1) {
                 wishesService.deleteById(wishes2.getId());

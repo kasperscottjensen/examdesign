@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface IWishesService extends ICrudService<Wishes,Long> {
 
-    List<Wishes> findAllWishByUser_Username(String username);
+    List<Wishes> findAllWishByProfile_Username(String username);
 
 }

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IWishesRepo extends JpaRepository<Wishes,Long> {
 
-    List<Wishes> findAllWishByUser_Username(String username, Sort sort);
+    List<Wishes> findAllWishByProfile_Username(String username, Sort sort);
 
 }

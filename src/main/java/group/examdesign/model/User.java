@@ -23,7 +23,5 @@ public class User {
     private Authority authority;
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Wishes> wishes;
 
 }
