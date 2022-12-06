@@ -54,5 +54,9 @@ public class ViewController {
     public String userindex() {
         return "/user/userindex";
     }
+    @GetMapping("/user/calenderforwishesuser")
+    public String userWishesCalender() {
+        return "/user/calenderforwishesuser";
+    }
 
 }

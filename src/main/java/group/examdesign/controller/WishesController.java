@@ -1,4 +1,5 @@
 package group.examdesign.controller;
+import group.examdesign.model.User;
 import group.examdesign.model.Wishes;
 import group.examdesign.service.UserService;
 import group.examdesign.service.WishesService;
@@ -53,9 +54,9 @@ public class WishesController {
         return new ResponseEntity<>(wishesService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/findAllByUser")
-    public ResponseEntity<List<Wishes>> findAllByUser(@RequestBody Wishes wishes){
-        return new ResponseEntity<>(wishesService.findAllWishByUser_Username(wishes.getUser().getUsername()), HttpStatus.OK);
+    @GetMapping("/findAllByUser/{username}")
+    public ResponseEntity<List<Wishes>> findAllByUser(@PathVariable String username){
+        return new ResponseEntity<>(wishesService.findAllWishByUser_Username(username), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
