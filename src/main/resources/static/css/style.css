@@ -77,3 +77,7 @@ select {
 .title-img {
     max-width: 300px;
 }
+
+.nav-item a:active {
+    background-color: #F8C749 !important;
+}
