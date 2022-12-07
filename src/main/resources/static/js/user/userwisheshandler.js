@@ -17,9 +17,10 @@ class Userwisheshandler{
                 document.getElementById("current-date").innerHTML = 0 + event.target.textContent + "/" + getMonth + "/" + year;
             });
         });
+        this.constructWishOnDate();
+
     }
-    constructWishOnDate(monthModal, yearModal){
-        this.updateModal(monthModal, yearModal);
+    constructWishOnDate(){
         $('#larry').children().remove();
         console.log("kom")
         let getWishes = JSON.parse(localStorage.getItem("wishesArray"));

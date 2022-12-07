@@ -37,7 +37,7 @@
 
         <div class="form-inline">
 
-            <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
+            <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="calenderforwishes.previous()">Previous</button>
 
             <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
         </div>
@@ -60,7 +60,7 @@
             </select>
 
 
-            <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+            <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump(year)">
             <option value=2010>2010</option>
             <option value=2011>2011</option>
             <option value=2012>2012</option>
@@ -147,11 +147,6 @@
 </div>
 
 <!-- Modal body -->
-<script src="/js/user/userwisheshandler.js"></script>
-<script src="/js/plugins/serializejson.js"></script>
-<script src="/js/user/uapicaller.js"></script>
-<script src="/js/user/calenderforwishes.js"></script>
-
 <!-- Optional JavaScript for bootstrap -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -163,6 +158,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
+<!--Custom scripts-->
+<script src="/js/user/calenderforwishes.js"></script>
+<script src="/js/user/userwisheshandler.js"></script>
+<script src="/js/plugins/serializejson.js"></script>
+<script src="/js/user/uapicaller.js"></script>
+
 
 
 </body>
