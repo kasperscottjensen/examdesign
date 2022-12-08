@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,12 +23,18 @@ public class WishesController {
     @PostMapping("/save")
     public ResponseEntity<Wishes> save(@RequestBody Wishes wishes) {
         if (userService.findById(wishes.getProfile().getUsername()).isPresent()) {
-            wishesService.save(wishes);
-            return new ResponseEntity<>(wishes, HttpStatus.OK);
+            if(wishesService.findByDateAndProfile_Username(wishes.getDate(), wishes.getProfile().getUsername()).isPresent()){
+                Wishes wishtoCheck = wishesService.findByDateAndProfile_Username(wishes.getDate(), wishes.getProfile().getUsername()).get();
+                wishes.setId(wishtoCheck.getId());
+                wishesService.save(wishes);
+                return new ResponseEntity<>(wishes, HttpStatus.OK);
+            }else{
+                wishesService.save(wishes);
+                return new ResponseEntity<>(wishes, HttpStatus.OK);
+            }
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @GetMapping("/find/{id}")
@@ -82,5 +90,13 @@ public class WishesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @GetMapping("/findByUserAndDate/{date}/{username}")
+    public ResponseEntity<Wishes> findByDateAndProfile_Username(@PathVariable("date")Date date, @PathVariable("username") String username) {
+        if (wishesService.findByDateAndProfile_Username(date, username).isPresent()) {
+            Wishes wishToFind = wishesService.findByDateAndProfile_Username(date, username).get();
+            return new ResponseEntity<>(wishToFind, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
