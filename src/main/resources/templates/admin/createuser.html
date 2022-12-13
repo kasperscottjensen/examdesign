@@ -66,7 +66,7 @@
                                  <a href="/admin/adminindex"><i class="fa-solid fa-building p-3"></i>Hjem</a>
                              </li>
                              <li class="nav-item ps-3">
-                                 <a href="#"><i class="fa-solid fa-calendar-plus p-3"></i>Administrer vagtplan</a>
+                                 <a href="/admin/shiftadminnistration"><i class="fa-solid fa-calendar-plus p-3"></i>Administrer vagtplan</a>
                              </li>
                              <li class="nav-item-active ps-3">
                                  <a href="/admin/allusers"><i class="fa-solid fa-users p-3"></i>Administrer brugere</a>
@@ -104,38 +104,63 @@
                  </div>
                  <!-- navigation end -->
                  <!-- right panel -->
-                 <div class="col-10 full-height text-black text-center">
-                     <h3 class="py-5">Opret ny bruger</h3>
-                     <!-- create user -->
-                    <div class="row text-center justify-content-center">
-                        <div class="col-4">
-                            <form id="saveuser-form" onsubmit="aformhandler.saveuser()">
-                                <div class="form-outline mb-4">
-                                    <input type="username" name="username" class="form-control" placeholder="username" required/>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <input type="password" name="password" class="form-control" placeholder="password" required/>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <select type="text" name="enabled" required>
-                                        <option value="true">enabled</option>
-                                        <option value="false">disabled</option>
-                                    </select>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <select type="text" name="authority" required>
-                                        <option value="ROLE_USER">ROLE_USER</option>
-                                        <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-tertiary p-3">Opret bruger</button>
-                                <button class="btn btn-tertiary p-3"><a href="/admin/allusers">Tilbage</a></button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- create user end -->
-                </div>
-            </div>
+                 <div class="col-10 full-height text-black text-center bg-light-grey-custom">
+
+
+                     <!-- Background Card-->
+                     <div class="card mt-2 border border-dark " style="border: none;">
+                         <div class="card-header text-center bg-grey-custom">
+                             <h1 class="text-white">Opret bruger</h1>
+                         </div>
+                         <div class="card-body bg-blue-custom"  style="height: 100%; max-height: 90vh; overflow-y: scroll;" >
+                             <!-- Overlay Card-->
+                             <div class="card border border-dark">
+                                 <div class="card-header border-bottom border-dark bg-white d-flex justify-content-center align-items-center">
+                                     <!-- CARD HEADER -->
+                                     <h4>Indtast bruger oplysninger</h4>
+                                 </div>
+                                 <div class="card-body pt-0">
+                                     <!-- create user -->
+                                     <div class="row text-center justify-content-center">
+                                         <div class="col-4">
+                                             <form class="pt-5" id="saveuser-form" onsubmit="aformhandler.saveuser()">
+                                                 <div class="form-outline mb-4">
+                                                     <label class="pb-2 fw-bold">Brugernavn</label>
+                                                     <input type="username" name="username" class="form-control" placeholder="username" required/>
+                                                 </div>
+                                                 <div class="form-outline mb-4">
+                                                     <label class="pb-2 fw-bold">Kodeord</label>
+                                                     <input type="password" name="password" class="form-control" placeholder="password" required/>
+                                                 </div>
+                                                 <div class="form-outline mb-4">
+                                                     <label class="pb-2 fw-bold">Status</label>
+                                                     <select type="text" name="enabled" required>
+                                                         <option value="true">enabled</option>
+                                                         <option value="false">disabled</option>
+                                                     </select>
+                                                 </div>
+                                                 <div class="form-outline mb-4">
+                                                     <label class="pb-2 fw-bold">Rolle</label>
+                                                     <select type="text" name="authority" required>
+                                                         <option value="ROLE_USER">ROLE_USER</option>
+                                                         <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                                                     </select>
+                                                 </div>
+                                                 <button type="submit" class="btn btn-tertiary p-3">Opret bruger</button>
+                                                 <button class="btn btn-tertiary p-3"><a href="/admin/allusers">Tilbage</a></button>
+                                             </form>
+                                         </div>
+                                     </div>
+                                     <!-- create user end -->
+                                 </div>
+                             </div>
+                                 </div>
+                             </div>
+                             <!-- Overlay card END-->
+                         </div>
+                     </div>
+                     <!-- Background card END-->
+
         </div>
         <!-- content end -->
 

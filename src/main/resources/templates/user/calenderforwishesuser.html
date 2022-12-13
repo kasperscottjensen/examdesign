@@ -70,152 +70,169 @@
         </div>
         <!-- navigation end -->
         <!-- right panel -->
-        <div class="col-10 text-center pt-5">
-            <div class="container">
-                <div class="card">
-                    <div class="card-header d-flex">
-                        <button class="btn btn-outline-primary col-sm-4" id="previous" onclick="previous()">Previous</button>
-                        <h3 class = "text-center col-sm-4" id="monthAndYear"></h3>
-                        <button class="btn btn-outline-primary col-sm-4" id="next" onclick="next()">Next</button>
-                    </div>
-                    <table class="table table-bordered table-responsive-sm" id="calendar">
-                        <thead>
-                        <tr>
-                            <th>Søndag</th>
-                            <th>Mandag</th>
-                            <th>Tirsdag</th>
-                            <th>Onsdag</th>
-                            <th>Torsdag</th>
-                            <th>Fredag</th>
-                            <th>Lørdag</th>
-                        </tr>
-                        </thead>
+        <div class="col-10 text-center bg-light-grey-custom">
 
-                        <tbody id="calendar-body">
-
-                        </tbody>
-                    </table>
-                    <!--
-                            <div class="form-inline">
-
-                                <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
-
-                                <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
-                            </div>
-                    -->
-
-                    <br/>
-                    <form class="form-inline">
-                        <label class="lead mr-2 ml-2" for="month">Jump To: </label>
-                        <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
-                            <option value=0>Januar</option>
-                            <option value=1>Februar</option>
-                            <option value=2>Marts</option>
-                            <option value=3>April</option>
-                            <option value=4>Maj</option>
-                            <option value=5>Juni</option>
-                            <option value=6>Juli</option>
-                            <option value=7>August</option>
-                            <option value=8>Septemper</option>
-                            <option value=9>October</option>
-                            <option value=10>November</option>
-                            <option value=11>Decemeber</option>
-                        </select>
-
-
-                        <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
-                        <option value=2010>2010</option>
-                        <option value=2011>2011</option>
-                        <option value=2012>2012</option>
-                        <option value=2013>2013</option>
-                        <option value=2014>2014</option>
-                        <option value=2015>2015</option>
-                        <option value=2016>2016</option>
-                        <option value=2017>2017</option>
-                        <option value=2018>2018</option>
-                        <option value=2019>2019</option>
-                        <option value=2020>2020</option>
-                        <option value=2021>2021</option>
-                        <option value=2022>2022</option>
-                        <option value=2023>2023</option>
-                        <option value=2024>2024</option>
-                        <option value=2025>2025</option>
-                        <option value=2026>2026</option>
-                        <option value=2027>2027</option>
-                        <option value=2028>2028</option>
-                        <option value=2029>2029</option>
-                        <option value=2030>2030</option>
-                        <option value=2031>2031</option>
-                        <option value=2032>2032</option>
-                        <option value=2033>2033</option>
-                        <option value=2034>2034</option>
-                        <option value=2035>2035</option>
-                        <option value=2036>2036</option>
-                        <option value=2037>2037</option>
-                        <option value=2038>2038</option>
-                        <option value=2039>2039</option>
-                        <option value=2040>2040</option>
-                        <option value=2041>2041</option>
-                        <option value=2042>2042</option>
-                        <option value=2043>2043</option>
-                        <option value=2044>2044</option>
-                        <option value=2045>2045</option>
-                        <option value=2046>2046</option>
-                        <option value=2047>2047</option>
-                        <option value=2048>2048</option>
-                        <option value=2049>2049</option>
-                        <option value=2050>2050</option>
-                        <option value=2051>2051</option>
-                        <option value=2052>2052</option>
-                        <option value=2053>2053</option>
-                        <option value=2054>2054</option>
-                        <option value=2055>2055</option>
-                        <option value=2056>2056</option>
-                        <option value=2057>2057</option>
-                        <option value=2058>2058</option>
-                        <option value=2059>2059</option>
-                        <option value=2060>2060</option>
-                    </select></form>
+            <!-- Background Card-->
+            <div class="card mt-2 border border-dark " style="border: none;">
+                <div class="card-header text-center bg-grey-custom">
+                    <h1 class="text-white">Ønsker</h1>
                 </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="wishingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
+                <div class="card-body bg-blue-custom" style="height: 100%; max-height: 90vh; overflow-y: scroll;">
+                    <!-- Overlay Card-->
+                    <div class="card border border-dark">
+                        <div class="card-body pt-0">
                             <div class="container-fluid">
-                                <div class="d-flex justify-content-around">
-                                    <h5 class="modal-title text-dark" id="showUsername"></h5>
-                                    <h5 class="modal-title text-dark" id="current-date"></h5>
+                                <div class="card">
+                                    <div class="card-header d-flex">
+                                        <button class="btn btn-outline-primary col-sm-4" id="previous" onclick="previous()">Previous</button>
+                                        <h3 class = "text-center col-sm-4" id="monthAndYear"></h3>
+                                        <button class="btn btn-outline-primary col-sm-4" id="next" onclick="next()">Next</button>
+                                    </div>
+                                    <table class="table table-bordered table-responsive-sm" id="calendar">
+                                        <thead>
+                                        <tr>
+                                            <th>Søndag</th>
+                                            <th>Mandag</th>
+                                            <th>Tirsdag</th>
+                                            <th>Onsdag</th>
+                                            <th>Torsdag</th>
+                                            <th>Fredag</th>
+                                            <th>Lørdag</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody id="calendar-body">
+
+                                        </tbody>
+                                    </table>
+                                    <!--
+                                            <div class="form-inline">
+
+                                                <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
+
+                                                <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
+                                            </div>
+                                    -->
+
+                                    <br/>
+                                    <h2 class="lead fw-bold mr-2 ml-2" for="month" >Jump To:</h2>
+                                    <form class="form-inline d-flex text-center justify-content-center mb-5">
+                                        <select class="form-control col-4 mx-2 text-center" name="month" id="month" onchange="jump()" style="max-width: 250px">
+                                            <option value=0>Januar</option>
+                                            <option value=1>Februar</option>
+                                            <option value=2>Marts</option>
+                                            <option value=3>April</option>
+                                            <option value=4>Maj</option>
+                                            <option value=5>Juni</option>
+                                            <option value=6>Juli</option>
+                                            <option value=7>August</option>
+                                            <option value=8>Septemper</option>
+                                            <option value=9>October</option>
+                                            <option value=10>November</option>
+                                            <option value=11>Decemeber</option>
+                                        </select>
+
+
+                                        <label for="year"></label><select class="form-control col-4 mx-2 text-center" name="year" id="year" onchange="jump()" style="max-width: 250px">
+                                        <option value=2010>2010</option>
+                                        <option value=2011>2011</option>
+                                        <option value=2012>2012</option>
+                                        <option value=2013>2013</option>
+                                        <option value=2014>2014</option>
+                                        <option value=2015>2015</option>
+                                        <option value=2016>2016</option>
+                                        <option value=2017>2017</option>
+                                        <option value=2018>2018</option>
+                                        <option value=2019>2019</option>
+                                        <option value=2020>2020</option>
+                                        <option value=2021>2021</option>
+                                        <option value=2022>2022</option>
+                                        <option value=2023>2023</option>
+                                        <option value=2024>2024</option>
+                                        <option value=2025>2025</option>
+                                        <option value=2026>2026</option>
+                                        <option value=2027>2027</option>
+                                        <option value=2028>2028</option>
+                                        <option value=2029>2029</option>
+                                        <option value=2030>2030</option>
+                                        <option value=2031>2031</option>
+                                        <option value=2032>2032</option>
+                                        <option value=2033>2033</option>
+                                        <option value=2034>2034</option>
+                                        <option value=2035>2035</option>
+                                        <option value=2036>2036</option>
+                                        <option value=2037>2037</option>
+                                        <option value=2038>2038</option>
+                                        <option value=2039>2039</option>
+                                        <option value=2040>2040</option>
+                                        <option value=2041>2041</option>
+                                        <option value=2042>2042</option>
+                                        <option value=2043>2043</option>
+                                        <option value=2044>2044</option>
+                                        <option value=2045>2045</option>
+                                        <option value=2046>2046</option>
+                                        <option value=2047>2047</option>
+                                        <option value=2048>2048</option>
+                                        <option value=2049>2049</option>
+                                        <option value=2050>2050</option>
+                                        <option value=2051>2051</option>
+                                        <option value=2052>2052</option>
+                                        <option value=2053>2053</option>
+                                        <option value=2054>2054</option>
+                                        <option value=2055>2055</option>
+                                        <option value=2056>2056</option>
+                                        <option value=2057>2057</option>
+                                        <option value=2058>2058</option>
+                                        <option value=2059>2059</option>
+                                        <option value=2060>2060</option>
+                                    </select></form>
                                 </div>
                             </div>
-                        </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="wishingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="container-fluid">
+                                                <div class="d-flex justify-content-around">
+                                                    <h5 class="modal-title text-dark" id="showUsername"></h5>
+                                                    <h5 class="modal-title text-dark" id="current-date"></h5>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
-                        <div class="modal-body">
-                            <!-- Modal body -->
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="d-flex justify-content-center">
-                                        <div id = "larry">
-                                            <h5>Ønske:</h5>
-                                            <form>
-                                                <select class="mb-3" id="userWish" name="wish">
-                                                    <option value="Kan godt">Kan godt</option>
-                                                    <option value="Kan ikke">Kan ikke</option>
-                                                </select>
-                                                <input class="btn btn-success" type="submit" value="Submit" onclick="submitWish()" style="margin-left: 100px;">
-                                            </form>
+                                        <div class="modal-body">
+                                            <!-- Modal body -->
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="d-flex justify-content-center">
+                                                        <div id = "larry">
+                                                            <h5>Ønske:</h5>
+                                                            <form>
+                                                                <select class="mb-3" id="userWish" name="wish">
+                                                                    <option value="Kan godt">Kan godt</option>
+                                                                    <option value="Kan ikke">Kan ikke</option>
+                                                                </select>
+                                                                <input class="btn btn-success" type="submit" value="Submit" onclick="submitWish()" style="margin-left: 100px;">
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                        </div>
+                    </div>
+                    <!-- Overlay card END-->
                 </div>
             </div>
-        </div>
-    </div>
+            <!-- Background card end -->
         </div>
         <!-- right panel end -->
     </div>
