@@ -27,8 +27,6 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Wishes> wishes;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Shift> shifts = new ArrayList<>();
 
