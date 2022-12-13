@@ -14,13 +14,20 @@ class Userwisheshandler{
         var rows = document.getElementsByTagName('tr');
         Array.from(rows).forEach(function(tr) {
             tr.addEventListener('dblclick', function(event) {
-                document.getElementById("current-date").innerHTML = 0 + event.target.textContent + "/" + getMonth + "/" + year;
-            });
+                if(event.target.textContent < 10){
+                    document.getElementById("current-date").innerHTML = 0 + event.target.textContent + "/" + getMonth + "/" + year;
+                    constructWishOnDate();
+
+                }
+                else{
+                    document.getElementById("current-date").innerHTML = event.target.textContent + "/" + getMonth + "/" + year;
+                    constructWishOnDate();
+
+                }            });
         });
     }
-    constructWishOnDate(monthModal, yearModal){
-        this.updateModal(monthModal, yearModal);
-        $('#larry').children().remove();
+    constructWishOnDate(){
+        $('larry').children().remove();
         console.log("kom")
         let getWishes = JSON.parse(localStorage.getItem("wishesArray"));
         let currentDate = document.getElementById("current-date").innerHTML.valueOf();

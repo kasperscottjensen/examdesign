@@ -31,4 +31,5 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Shift> shifts = new ArrayList<>();
+
 }

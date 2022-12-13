@@ -93,6 +93,9 @@ select {
 .btn a:hover {
     color: black;
 }
+.noclick{
+    pointer-events: none;
+}
 
 .bg-blue-custom {
     background-color: #CEEAEC;

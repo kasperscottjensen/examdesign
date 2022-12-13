@@ -70,12 +70,6 @@ class Ajsonconstructor {
 
         aapicaller.put(JSON.stringify(edituserdata), "/user/update");
     }
-    saveWish(wishData){
-        let data =
-        {
-
-        }
-    }
 
     deleteShift(shiftId) {
         let data =

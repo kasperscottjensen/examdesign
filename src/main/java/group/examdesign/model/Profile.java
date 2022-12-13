@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,5 +28,9 @@ public class Profile {
     @OneToOne(mappedBy = "profile")
     @JsonIgnore
     private User user;
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<Newsfeed> newsfeeds;
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<Wishes> wishes;
 
 }

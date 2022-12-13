@@ -19,7 +19,7 @@ public class ProfileController {
 
     @PostMapping("/save")
     public ResponseEntity<Profile> save(@RequestBody Profile profile) {
-        Optional<User> optUser = userService.findById(profile.getUser().getUsername());
+        Optional<User> optUser = userService.findById(profile.getUsername());
         if (optUser.isPresent()) {
             profileService.save(profile);
             return new ResponseEntity<>(profile, HttpStatus.OK);
@@ -28,10 +28,10 @@ public class ProfileController {
         }
 
     }
-    @GetMapping("/find")
-    public ResponseEntity<Profile> find(@RequestBody Profile profile) {
-        if (profileService.findById(profile.getUsername()).isPresent()) {
-            Profile profileToFind = profileService.findById(profile.getUsername()).get();
+    @GetMapping("/find/{username}")
+    public ResponseEntity<Profile> find(@PathVariable("username") String username) {
+        if (profileService.findById(username).isPresent()) {
+            Profile profileToFind = profileService.findById(username).get();
             return new ResponseEntity<>(profileToFind, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
