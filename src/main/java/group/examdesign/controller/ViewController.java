@@ -60,6 +60,8 @@ public class ViewController {
     }
 
     @GetMapping("/admin/shiftadministration")
-    public String shiftadministration(){ return "admin/shiftadministration";}
+    public String shiftadministration() {
+        return "admin/shiftadministration";
+    }
 
 }
