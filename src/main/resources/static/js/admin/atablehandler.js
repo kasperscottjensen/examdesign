@@ -49,6 +49,18 @@ class Atablehandler {
 
     }
 
+    async allUsersForShiftModal(){
+        let users = await aapicaller.get("/user/findall");
+        let target = document.getElementById("addshiftusername");
+        let options = "" //"<option disabled>Vælg medarbejder</option>";
+        for (let index in users) {
+            let entry = users[index];
+            options += `<option value="${entry.username}">${entry.username}</option>`;
+        }
+        target.innerHTML = options;
+    }
+
+
 }
 
 const atablehandler = new Atablehandler();

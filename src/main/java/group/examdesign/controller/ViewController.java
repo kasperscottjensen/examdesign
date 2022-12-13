@@ -59,4 +59,7 @@ public class ViewController {
         return "/user/calenderforwishesuser";
     }
 
+    @GetMapping("/admin/shiftadministration")
+    public String shiftadministration(){ return "admin/shiftadministration";}
+
 }

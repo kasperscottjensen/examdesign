@@ -4,6 +4,13 @@ class Aformhandler {
 
     }
 
+    saveshift() {
+        event.preventDefault();
+        let formdata = $('#modal-form-addshift').serializeJSON();
+        ajsonconstructor.saveshift(formdata);
+        document.getElementById('modal-form-addshift').reset();
+    }
+
     saveuser() {
         let formdata = $('#saveuser-form').serializeJSON();
         ajsonconstructor.saveuser(formdata);

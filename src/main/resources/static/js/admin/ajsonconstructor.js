@@ -4,6 +4,31 @@ class Ajsonconstructor {
 
     }
 
+    saveshift(formdata) {
+        let shiftData;
+        if(formdata.addshifttimeend === ""){
+            shiftData = {
+                "date": formdata.addshiftdate,
+                "timeStart": formdata.addshifttimestart,
+                "user":
+                    {
+                        "username": formdata.addshiftusername
+                    }
+            }
+        }else{
+            shiftData = {
+                "date": formdata.addshiftdate,
+                "timeStart": formdata.addshifttimestart,
+                "timeEnd": formdata.addshifttimeend,
+                "user":
+                    {
+                        "username": formdata.addshiftusername
+                    }
+            }
+        }
+        aapicaller.postNoReload(JSON.stringify(shiftData), "/shift/save");
+    }
+
     saveuser(formdata) {
         let data =
             {
@@ -42,7 +67,7 @@ class Ajsonconstructor {
                     }
                 }
         }
-        console.log(edituserdata);
+
         aapicaller.put(JSON.stringify(edituserdata), "/user/update");
     }
     saveWish(wishData){
@@ -50,6 +75,14 @@ class Ajsonconstructor {
         {
 
         }
+    }
+
+    deleteShift(shiftId) {
+        let data =
+            {
+                "id": shiftId
+            }
+        aapicaller.deleteNoReload(JSON.stringify(data), "/shift/delete");
     }
 
 }
