@@ -44,71 +44,134 @@
 <!-- head end -->
 
 <!-- body -->
-<body class="bg-light-grey-custom" onload="ashiftOverwiev.showTodaysMonthAndYear(), ashiftOverwiev.cardGenerator()">
+<body class="bg-blue" onload="ashiftOverwiev.showTodaysMonthAndYear(), ashiftOverwiev.cardGenerator()">
 
-<div class="container-fluid">
+<!-- content -->
+<div class="container-fluid text-black">
   <div class="row">
-    <div class="col">
-      <!-- Background Card-->
-      <div class="card mt-2 border border-dark " style="border: none;">
-        <div class="card-header text-center bg-grey-custom">
-          <h1 class="text-white">Lav vagtplan</h1>
-        </div>
-        <div class="card-body bg-blue-custom"  style="height: 875px; overflow-y: scroll;">
-          <!-- Overlay Card-->
-          <div class="card border border-dark">
-            <div class="card-header border-bottom border-dark bg-white d-flex justify-content-center align-items-center">
-              <i class="fa-solid fa-arrow-left fa-xl mx-5 btn" onclick="ashiftOverwiev.goBack()"></i>
-              <h3 id="shift-administration-month-and-year" class=""></h3>
-              <i class="fa-solid fa-arrow-right fa-xl mx-5 btn" onclick="ashiftOverwiev.goForward()"></i>
+    <!-- navigation -->
+    <div class="col-2 right-shadow full-height">
+      <!-- title -->
+      <div class="row justify-content-center">
+        <img class="title-img py-4 pe-5" src="/images/title-blue-bg.png">
+        <hr class="w-75">
+      </div>
+      <!-- tabs -->
+      <div class="row pt-4">
+        <ul class="text-decoration-none list-unstyled">
+          <li class="nav-item ps-3">
+            <a href="/admin/adminindex"><i class="fa-solid fa-building p-3"></i>Hjem</a>
+          </li>
+          <li class="nav-item-active ps-3">
+            <a href="/admin/shiftadministration"><i class="fa-solid fa-calendar-plus p-3"></i>Administrer vagtplan</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a href="/admin/allusers"><i class="fa-solid fa-users p-3"></i>Administrer brugere</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a href="#"><i class="fa-solid fa-comment p-3"></i>Nyhedsfeed</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a href="#"><i class="fa-solid far fa-calendar p-3"></i>Vagtplan</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a href="#"><i class="fa-solid fa-star p-3"></i>Ønskeliste</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a href="#"><i class="fa-solid fas fa-bell p-3"></i>Rediger check ind / ud</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a href="#"><i class="fa-solid fas fa-chart-pie p-3"></i>Statistik</a>
+          </li>
+          <li class="nav-item ps-3">
+            <a href="#"><i class="fa-solid fas fa-users p-3"></i>Medarbejdere</a>
+          </li>
+          <li class="nav-item ps-3">
+            <form th:action="@{/auth/logout}" method="post" id="logout-form">
+              <button type="submit" class="btn-logout"><i class="fa-solid fas fa-sign-out p-3"></i>Log ud</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <!-- logo -->
+      <div class="row justify-content-center text-center text-black pt-5">
+        <hr class="w-75">
+        <img class="index-logo-sm" src="/images/logo-no-bg.png">
+      </div>
+    </div>
+    <!-- navigation end -->
+    <!-- right panel -->
+    <div class="col-10 full-height text-black text-center bg-light-grey-custom">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <!-- Background Card-->
+            <div class="card mt-2 border border-dark " style="border: none;">
+              <div class="card-header text-center bg-grey-custom">
+                <h1 class="text-white">Lav vagtplan</h1>
+              </div>
+              <div class="card-body bg-blue-custom"  style="height: 835px; overflow-y: scroll;">
+                <!-- Overlay Card-->
+                <div class="card border border-dark">
+                  <div class="card-header border-bottom border-dark bg-white d-flex justify-content-center align-items-center">
+                    <i class="fa-solid fa-arrow-left fa-xl mx-5 btn" onclick="ashiftOverwiev.goBack()"></i>
+                    <h3 id="shift-administration-month-and-year" class=""></h3>
+                    <i class="fa-solid fa-arrow-right fa-xl mx-5 btn" onclick="ashiftOverwiev.goForward()"></i>
+                  </div>
+                  <div class="card-body pt-0">
+                    <!-- Cards From Javascript -->
+                    <div id="date-cards-html-target"></div>
+                  </div>
+                </div>
+                <!-- Overlay card END-->
+              </div>
             </div>
-            <div class="card-body pt-0">
-              <!-- Cards From Javascript -->
-              <div id="date-cards-html-target"></div>
-            </div>
+            <!-- Background card END-->
           </div>
-          <!-- Overlay card END-->
         </div>
       </div>
-      <!-- Background card END-->
-    </div>
-  </div>
-</div>
 
-<!-- Modal START -->
-<div class="modal bg-dark bg-opacity-75 fade" tabindex="-1" role="dialog" id="addshift-modal">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <form id="modal-form-addshift" onsubmit="aformhandler.saveshift()">
-          <div id="addshift-date-group" class="form-group">
-            <h2 id="modal-createshift"></h2>
-            <label for="addshiftdate"></label>
-            <input type="text" value="" class="form-control" id="addshiftdate" name="addshiftdate" required readonly hidden/>
+      <!-- Modal START -->
+      <div class="modal bg-dark bg-opacity-75 fade" tabindex="-1" role="dialog" id="addshift-modal">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <form id="modal-form-addshift" onsubmit="aformhandler.saveshift()">
+                <div id="addshift-date-group" class="form-group">
+                  <h2 id="modal-createshift"></h2>
+                  <label for="addshiftdate"></label>
+                  <input type="text" value="" class="form-control" id="addshiftdate" name="addshiftdate" required readonly hidden/>
+                </div>
+                <div id="addshift-username-group" class="form-group">
+                  <label for="addshiftusername">Medarbejder</label>
+                  <select class="form-control" id="addshiftusername" name="addshiftusername" required>
+                  </select>
+                </div>
+                <div id="addshift-timestart-group" class="form-group">
+                  <label for="addshifttimestart">Start tidspunkt</label>
+                  <input type="time" class="form-control" id="addshifttimestart" name="addshifttimestart"  required/>
+                </div>
+                <div id="addshift-timeend-group" class="form-group">
+                  <label for="addshifttimeend">Slut tidspunkt - Efterlad feltet tomt, hvis det er en LUKKE VAGT</label>
+                  <input type="time" class="form-control" id="addshifttimeend" name="addshifttimeend"/>
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button class="btn btn-success mt-2"  type="submit" data-bs-dismiss="modal">Tilføj</button>
+                  <button type="button" class="btn btn-danger modal-btn" data-bs-dismiss="modal">Annuller</button>
+                </div>
+              </form>
+            </div>
           </div>
-          <div id="addshift-username-group" class="form-group">
-            <label for="addshiftusername">Medarbejder</label>
-            <select class="form-control" id="addshiftusername" name="addshiftusername" required>
-            </select>
-          </div>
-          <div id="addshift-timestart-group" class="form-group">
-            <label for="addshifttimestart">Start tidspunkt</label>
-            <input type="time" class="form-control" id="addshifttimestart" name="addshifttimestart"  required/>
-          </div>
-          <div id="addshift-timeend-group" class="form-group">
-            <label for="addshifttimeend">Slut tidspunkt - Efterlad feltet tomt, hvis det er en LUKKE VAGT</label>
-            <input type="time" class="form-control" id="addshifttimeend" name="addshifttimeend"/>
-          </div>
-          <div class="modal-footer justify-content-center">
-            <button class="btn btn-success mt-2"  type="submit" data-bs-dismiss="modal">Tilføj</button>
-            <button type="button" class="btn btn-danger modal-btn" data-bs-dismiss="modal">Annuller</button>
-          </div>
-        </form>
+        </div>
       </div>
+      <!-- Modal END -->
     </div>
+    <!-- right panel end -->
   </div>
 </div>
-<!-- Modal END -->
+<!-- content end -->
+
+
 
 
 
