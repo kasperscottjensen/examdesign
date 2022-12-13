@@ -93,3 +93,6 @@ select {
 .btn a:hover {
     color: black;
 }
+.noclick{
+    pointer-events: none;
+}

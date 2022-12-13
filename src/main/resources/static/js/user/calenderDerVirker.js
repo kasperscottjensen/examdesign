@@ -4,7 +4,7 @@ currentYear = today.getFullYear();
 selectYear = document.getElementById("year");
 selectMonth = document.getElementById("month");
 
-months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+months = ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "Novemebr", "December"];
 
 monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
@@ -15,18 +15,21 @@ function next() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
     showCalendar(currentMonth, currentYear);
+    showWishOnCalender(currentMonth, currentYear);
 }
 
 function previous() {
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
     showCalendar(currentMonth, currentYear);
+    constructWishOnDate(currentMonth, currentYear);
 }
 
 function jump() {
     currentYear = parseInt(selectYear.value);
     currentMonth = parseInt(selectMonth.value);
     showCalendar(currentMonth, currentYear);
+    constructWishOnDate(currentMonth, currentYear);
 }
 
 function showCalendar(month, year) {
@@ -63,13 +66,17 @@ function showCalendar(month, year) {
 
             else {
                 cell = document.createElement("td");
-                cell.ondblclick = function() { $('#wishingModal').modal('show');};
+                cell.ondblclick = function() { $('#wishingModal').modal('show');
+                };
+                cellP = document.createElement("p");
                 cellText = document.createTextNode(date);
+                cellP.appendChild(cellText);
+                cellP.classList.add("noclick");
                 cell.id = "cell-id-" + date;
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
                 } // color today's date
-                cell.appendChild(cellText);
+                cell.appendChild(cellP);
                 row.appendChild(cell);
                 date++;
             }
@@ -94,20 +101,18 @@ function updateModal(month, year){
     Array.from(rows).forEach(function(tr) {
         tr.addEventListener('dblclick', function(event) {
             if(event.target.textContent < 10){
+                console.log(event.target.textContent)
                 document.getElementById("current-date").innerHTML = 0 + event.target.textContent + "/" + getMonth + "/" + year;
                 constructWishOnDate();
-
             }
                 else{
                 document.getElementById("current-date").innerHTML = event.target.textContent + "/" + getMonth + "/" + year;
                 constructWishOnDate();
-
             }
         });
     });
 }
 function constructWishOnDate(){
-    $('#larry').children().remove();
     let getWishes = JSON.parse(localStorage.getItem("wishesArray"));
     let currentDate = document.getElementById("current-date").innerHTML.valueOf();
     console.log(currentDate);
@@ -116,16 +121,8 @@ function constructWishOnDate(){
     console.log(result);
     for (let index in getWishes) {
         if (getWishes[index].date === result) {
-            let wishesEntry = getWishes[index];
-            let wishesCardsTarget = $('#larry');
-            let wishesCards =
-                `<tr>
-                            <td>
-                                ${wishesEntry.wish}
-                            </td>
-                        </tr>`;
-            //Append to html
-            wishesCardsTarget.append(wishesCards);
+            console.log(getWishes[index].wish);
+            document.getElementById("userWish").value = getWishes[index].wish;
         }
     }
 }
@@ -152,9 +149,9 @@ function showWishOnCalender(month, year){
                     cell = document.getElementById("cell-id-" + i);
                     cellTag = document.createElement("i");
                     if(userWishes[index].wish === "Kan godt"){
-                        cellTag.classList.add("fa-solid", "fa-square-check", "fa-xl", "ms-5");
+                        cellTag.classList.add("fa-solid", "fa-square-check", "fa-xl", "ms-5", "noclick");
                     }else if(userWishes[index].wish === "Kan ikke"){
-                        cellTag.classList.add("fa-solid", "fa-square-minus", "fa-xl", "ms-5");
+                        cellTag.classList.add("fa-solid", "fa-square-minus", "fa-xl", "ms-5", "noclick");
                     }
                     cellTag.style.paddingLeft = "39.56px";
                     cell.appendChild(cellTag);
@@ -162,16 +159,27 @@ function showWishOnCalender(month, year){
                     cell = document.getElementById("cell-id-" + i);
                     cellTag = document.createElement("i");
                     if(userWishes[index].wish === "Kan godt"){
-                        cellTag.classList.add("fa-solid", "fa-square-check", "fa-xl", "ms-5");
+                        cellTag.classList.add("fa-solid", "fa-square-check", "fa-xl", "ms-5", "noclick");
                     }else if(userWishes[index].wish === "Kan ikke"){
-                        cellTag.classList.add("fa-solid", "fa-square-minus", "fa-xl", "ms-5");
+                        cellTag.classList.add("fa-solid", "fa-square-minus", "fa-xl", "ms-5", "noclick");
                     }
                     cellTag.style.paddingLeft = "30px";
                     cell.appendChild(cellTag);
                 }
             }
         }
-
     }
-
+}
+function submitWish(){
+    event.preventDefault();
+    console.log("hej kaj");
+    let currentDate = document.getElementById("current-date").innerHTML.valueOf();
+    const [day, month, year] = currentDate.split('/');
+    const result = [year, month, day].join('-');
+    console.log(result);
+    let getUsername = localStorage.getItem("username");
+    console.log(getUsername);
+    let wish = $('#userWish').val();
+    console.log(wish)
+    ujsonconstructor.savewish(result,wish,getUsername);
 }

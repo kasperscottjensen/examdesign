@@ -45,12 +45,6 @@ class Ajsonconstructor {
         console.log(edituserdata);
         aapicaller.put(JSON.stringify(edituserdata), "/user/update");
     }
-    saveWish(wishData){
-        let data =
-        {
-
-        }
-    }
 
 }
 

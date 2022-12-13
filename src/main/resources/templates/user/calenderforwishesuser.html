@@ -15,7 +15,7 @@
             crossorigin="anonymous"></script>
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/d08aa4195f.js" crossorigin="anonymous"></script>
-    <link href="style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body onload="getWishForUser()">
 <!-- content -->
@@ -128,7 +128,7 @@
         </div>
         <!-- Modal -->
         <div class="modal fade" id="wishingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md">
+            <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="container-fluid">
@@ -144,10 +144,13 @@
                         <!-- Modal body -->
                         <div class="container-fluid">
                             <div class="row">
-                                <p class="fs-2">Ønske Kommentar:</p>
                                 <div class="d-flex justify-content-center">
                                     <div id = "larry">
-
+                                            <h5>Ønske:</h5>
+                                        <form>
+                                            <input type="text" id="userWish" name="wish">
+                                            <input type="submit" value="Submit" onclick="submitWish()" style="margin-left: 100px;">
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -163,6 +166,8 @@
 
 
 <!-- Optional JavaScript for bootstrap -->
+<script src="/js/plugins/serializejson.js"></script>
+<script src="/js/user/ujsonconstructor.js"></script>
 <script src="/js/user/calenderDerVirker.js"></script>
 <script src="/js/user/uapicaller.js"></script>
 
