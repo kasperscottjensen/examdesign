@@ -1,7 +1,9 @@
 package group.examdesign.controller;
 
 import group.examdesign.model.Shift;
+import group.examdesign.model.User;
 import group.examdesign.service.IShiftService;
+import group.examdesign.service.IUserService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +24,7 @@ import java.util.Optional;
 public class ShiftController {
 
     private IShiftService shiftService;
+    private IUserService userService;
 
     @GetMapping("/findall")
     public ResponseEntity<List<Shift>> findAll(){
@@ -82,14 +87,31 @@ public class ShiftController {
         }
     }
 
-    @GetMapping("/findbydateinterval/{dateStart}/dateEnd")
-    public ResponseEntity<List<Shift>> findShiftsByDateInterval(@PathVariable("dateStart") Date dateStart, @PathVariable("dateEnd") Date dateEnd){
-
+    @GetMapping("/findbydateinterval/{dateStart}/{dateEnd}")
+    public ResponseEntity<List<ShiftWithUser>> findShiftsByDateInterval(@PathVariable("dateStart") Date dateStart, @PathVariable("dateEnd") Date dateEnd){
         List<Shift> list = shiftService.findShiftsByDateInterval(dateStart, dateEnd);
         if (list != null) {
-            return new ResponseEntity<>(list, HttpStatus.OK);
+            List<ShiftWithUser> responseList = new ArrayList<>();
+            for(Shift shift : list){
+                ShiftWithUser shiftwithuser = new ShiftWithUser(shift);
+                responseList.add(shiftwithuser);
+            }
+            return new ResponseEntity<>(responseList, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+}
+
+@NoArgsConstructor
+@Getter
+@Setter
+class ShiftWithUser {
+    private Shift shift;
+    private String username;
+
+    ShiftWithUser(Shift shift){
+        this.shift = shift;
+        this.username = shift.getUser().getUsername();
     }
 }

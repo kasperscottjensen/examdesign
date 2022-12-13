@@ -11,6 +11,42 @@ class Aapicaller {
         return await response.json();  
     }
 
+    async deleteNoReload(json, url) {
+        try {
+            event.preventDefault();
+            await fetch(api + url, {
+                method: 'DELETE',
+                headers:
+                    {
+                        'Content-Type': 'application/json'
+                    },
+                body: json
+            }).then(function() {
+                ashiftOverwiev.cardGenerator()
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async postNoReload(json, url) {
+        try {
+            event.preventDefault();
+            await fetch(api + url, {
+                method: 'POST',
+                headers:
+                    {
+                        'Content-Type': 'application/json'
+                    },
+                body: json
+            }).then(function() {
+                ashiftOverwiev.cardGenerator()
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async post(json, url) {
         try {
             event.preventDefault();

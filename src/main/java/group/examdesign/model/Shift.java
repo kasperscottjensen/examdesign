@@ -30,5 +30,4 @@ public class Shift {
     @JsonBackReference
     private User user;
 
-
 }

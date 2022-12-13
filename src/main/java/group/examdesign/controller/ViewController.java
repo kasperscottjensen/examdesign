@@ -55,4 +55,7 @@ public class ViewController {
         return "/user/userindex";
     }
 
+    @GetMapping("/admin/shiftadministration")
+    public String shiftadministration(){ return "admin/shiftadministration";}
+
 }

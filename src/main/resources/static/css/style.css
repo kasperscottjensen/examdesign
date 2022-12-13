@@ -81,3 +81,15 @@ select {
 .nav-item a:active {
     background-color: #F8C749 !important;
 }
+
+.bg-blue-custom {
+    background-color: #CEEAEC;
+}
+
+.bg-grey-custom {
+    background-color: rgba(43, 41, 41, 0.8);
+}
+
+.bg-light-grey-custom {
+    background-color: rgba(222, 222, 222, 1);
+}
