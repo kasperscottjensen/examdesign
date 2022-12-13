@@ -11,7 +11,7 @@ class Ujsonconstructor{
                     "username":username
                     }
             }
-        uapicaller.post(JSON.stringify(data),"/wishes/save");
+        uapicaller.postWhishes(JSON.stringify(data),"/wishes/save");
     }
 }
 const ujsonconstructor = new Ujsonconstructor();

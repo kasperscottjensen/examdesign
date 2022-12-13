@@ -170,16 +170,12 @@ function showWishOnCalender(month, year){
         }
     }
 }
-function submitWish(){
+async function submitWish(){
     event.preventDefault();
-    console.log("hej kaj");
     let currentDate = document.getElementById("current-date").innerHTML.valueOf();
     const [day, month, year] = currentDate.split('/');
     const result = [year, month, day].join('-');
-    console.log(result);
     let getUsername = localStorage.getItem("username");
-    console.log(getUsername);
     let wish = $('#userWish').val();
-    console.log(wish)
     ujsonconstructor.savewish(result,wish,getUsername);
 }

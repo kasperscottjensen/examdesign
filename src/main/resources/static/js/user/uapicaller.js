@@ -11,6 +11,27 @@ class Uapicaller {
         return await response.json();
     }
 
+    async postWhishes(json, url) {
+        try {
+            event.preventDefault();
+            await fetch(api + url, {
+                method: 'POST',
+                headers:
+                    {
+                        'Content-Type': 'application/json'
+                    },
+                body: json
+            }).then(function() {
+                getWishForUser();
+                setTimeout(function () {
+                    location.reload()
+                }, 250)
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async post(json, url) {
         try {
             event.preventDefault();

@@ -150,8 +150,11 @@
                                     <div id = "larry">
                                             <h5>Ønske:</h5>
                                         <form>
-                                            <input type="text" id="userWish" name="wish">
-                                            <input type="submit" value="Submit" onclick="submitWish()" style="margin-left: 100px;">
+                                            <select class="mb-3" id="userWish" name="wish">
+                                                <option value="Kan godt">Kan godt</option>
+                                                <option value="Kan ikke">Kan ikke</option>
+                                            </select>
+                                            <input class="btn btn-success" type="submit" value="Submit" onclick="submitWish()" style="margin-left: 100px;">
                                         </form>
                                     </div>
                                 </div>
