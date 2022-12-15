@@ -14,4 +14,8 @@ public interface IShiftRepo extends JpaRepository<Shift, Long> {
 
     @Query(value = "SELECT * FROM shifts s WHERE s.date BETWEEN ?1 AND ?2 ORDER BY s.date ASC, s.time_start ASC, s.time_end ASC", nativeQuery = true)
     List<Shift> findShiftsByDateInterval(Date dateStart, Date dateEnd);
+
+    @Override
+    @Query(value = "SELECT * FROM shifts s ORDER BY s.date ASC, s.time_start ASC, s.time_end ASC", nativeQuery = true)
+    List<Shift> findAll();
 }

@@ -64,4 +64,9 @@ public class ViewController {
         return "admin/shiftadministration";
     }
 
+    @GetMapping("/user/shiftoverview")
+    public String shiftOverview() {
+        return "user/shiftoverview";
+    }
+
 }
