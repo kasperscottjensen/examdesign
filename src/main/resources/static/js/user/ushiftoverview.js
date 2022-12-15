@@ -14,10 +14,12 @@ class AshiftOverwiev2 {
         let response = await fetch("http://localhost:8080/user/api/shift/findall", { method: 'GET'});
         let shifts = await response.json();
 
+        let todaysDateFormatted = todaysDate.getFullYear() + "-" + (todaysDate.getMonth()+1) + "-" + todaysDate.getDate();
+
         for(let shiftindex in shifts){
             let shiftEntry = shifts[shiftindex];
-            if(shiftEntry.username.toLowerCase() === localStorage.getItem("username").toLowerCase()){
-
+        //Checks if the shift belongs to the user and if it older than to days date
+            if(shiftEntry.username.toLowerCase() === localStorage.getItem("username").toLowerCase() && shiftEntry.shift.date >= todaysDateFormatted){
                 let date = new Date(shiftEntry.shift.date);
                 let shiftEntryDay = '';
                 if(date.getDay() === 0){
