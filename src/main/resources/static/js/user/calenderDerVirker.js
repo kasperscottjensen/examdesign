@@ -66,6 +66,7 @@ function showCalendar(month, year) {
 
             else {
                 cell = document.createElement("td");
+                cell.classList.add("td-hover");
                 cell.ondblclick = function() { $('#wishingModal').modal('show');
                 };
                 cellP = document.createElement("p");
