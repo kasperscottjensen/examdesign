@@ -144,20 +144,7 @@ class AshiftOverwiev2 {
     };
 
     somOm() {
-        window.alert("Hej med dig. Jeg hedder Kaj.\n" +
-            "Kaj, Kaj, Kaj, ja, det er mig.\n" +
-            "Du-bi, Du-bi, Du-bi-dej.\n" +
-            "Kaj, Kaj, Kaj, Kaj det er mig.\n" +
-            "\n" +
-            "Jeg kaldes skønne Kaj, grønne Kaj,\n" +
-            "Kender du mig? Siger du nej\n" +
-            "Skønne Kaj, grønne Kaj.\n" +
-            "Det mig, mig, mig.\n" +
-            "\n" +
-            "Hej med dig. Jeg hedder Kaj.\n" +
-            "Kaj, Kaj, Kaj, ja, det er mig.\n" +
-            "Du-bi, Du-bi, Du-bi-dej.\n" +
-            "Kaj, Kaj, Kaj, Kaj det er mig.");
+        window.alert("Under udvikling");
     }
 };
 
