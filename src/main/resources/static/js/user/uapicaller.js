@@ -85,6 +85,22 @@ class Uapicaller {
             console.log(error);
         }
     }
+    async deleteById(url) {
+        try {
+            event.preventDefault();
+            await fetch(api + url, {
+                method: 'DELETE',
+                headers:
+                    {
+                        'Content-Type': 'application/json'
+                    },
+            }).then(function() {
+                location.reload();
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 }
 

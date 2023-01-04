@@ -17,7 +17,7 @@ public class NewsfeedService implements INewsfeedService {
     private INewsfeedRepo newsfeedRepo;
     @Override
     public List<Newsfeed> findAll() {
-        return new ArrayList<>(newsfeedRepo.findAll(Sort.by(Sort.Direction.ASC, "date")));
+        return new ArrayList<>(newsfeedRepo.findAll(Sort.by(Sort.Direction.DESC, "date")));
     }
 
     @Override

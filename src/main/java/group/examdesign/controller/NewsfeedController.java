@@ -63,4 +63,8 @@ public class NewsfeedController {
     public ResponseEntity<List<Newsfeed>> findAllByUser(@PathVariable String username){
         return new ResponseEntity<>(newsfeedService.findAllNewsfeedByProfile_Username(username), HttpStatus.OK);
     }
+    @GetMapping("/findAll")
+    public ResponseEntity<List<Newsfeed>> findAll(){
+        return new ResponseEntity<>(newsfeedService.findAll(), HttpStatus.OK);
+    }
 }

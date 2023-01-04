@@ -69,4 +69,17 @@ public class ViewController {
         return "user/shiftoverview";
     }
 
+    @GetMapping("/user/profile")
+    public String profile() {
+        return "/user/profile";
+    }
+    @GetMapping("/user/newsfeeduser")
+    public String newsfeeduser(){
+        return "/user/newsfeeduser";
+    }
+    @GetMapping("/admin/newsfeedadmin")
+    public String newsfeedadmin(){
+        return "/admin/newsfeedadmin";
+    }
+
 }

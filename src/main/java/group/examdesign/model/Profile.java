@@ -25,6 +25,8 @@ public class Profile {
     private String phone;
     @Column(name = "date_hired")
     private Date hired;
+    @Column(name = "email")
+    private String email;
     @OneToOne(mappedBy = "profile")
     @JsonIgnore
     private User user;

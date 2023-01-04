@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsfeed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/8fa6f6eb77.js" crossorigin="anonymous"></script>
+    <<link href="/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-blue" onload="anewsfeed.getallposts()">
+<div class="container-fluid text-black">
+    <div class="row">
+        <!-- navigation -->
+        <div class="col-2 right-shadow full-height z-hi">
+            <!-- title -->
+            <div class="row justify-content-center">
+                <img class="title-img py-4 pe-5" src="/images/title-blue-bg.png">
+                <hr class="w-75">
+            </div>
+            <!-- tabs -->
+            <div class="row pt-4">
+                <ul class="text-decoration-none list-unstyled">
+                    <li class="nav-item ps-3">
+                        <a href="/admin/adminindex"><i class="fa-solid fa-building p-3"></i>Hjem</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <a href="/admin/shiftadministration"><i class="fa-solid fa-calendar-plus p-3"></i>Administrer vagtplan</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <a href="/admin/allusers"><i class="fa-solid fa-users p-3"></i>Administrer brugere</a>
+                    </li>
+                    <li class="nav-item-active ps-3">
+                        <a href="/admin/newsfeedadmin"><i class="fa-solid fa-comment p-3"></i>Nyhedsfeed</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <a href="#"><i class="fa-solid far fa-calendar p-3"></i>Vagtplan</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <a href="#"><i class="fa-solid fa-star p-3"></i>Ønskeliste</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <a href="#"><i class="fa-solid fas fa-bell p-3"></i>Rediger check ind / ud</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <a href="#"><i class="fa-solid fas fa-chart-pie p-3"></i>Statistik</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <a href="#"><i class="fa-solid fas fa-users p-3"></i>Medarbejdere</a>
+                    </li>
+                    <li class="nav-item ps-3">
+                        <form th:action="@{/auth/logout}" method="post" id="logout-form">
+                            <button type="submit" class="btn-logout"><i class="fa-solid fas fa-sign-out p-3"></i>Log ud</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <!-- logo -->
+            <div class="row justify-content-center text-center text-black pt-5">
+                <hr class="w-75">
+                <img class="index-logo-sm" src="/images/logo-no-bg.png">
+            </div>
+        </div>
+        <!-- navigation end -->
+        <!-- right panel -->
+        <div class="col-10 bg-light-grey-custom">
+
+            <!-- Background Card-->
+            <div class="card mt-2 border border-dark " style="border: none;">
+                <div class="card-header text-center bg-grey-custom d-flex">
+                    <h1 class="text-white">Newsfeed</h1>
+                    <i class="fa-regular fa-square-plus fs-2 text-white" onclick=""></i>
+                </div>
+                <div class="card-body bg-blue-custom" style="height: 100%; max-height: 90vh; overflow-y: scroll;">
+                    <!-- Overlay Card-->
+                    <div class="row" id="newsfeedcards">
+
+                    </div>
+                    <!-- Overlay card END-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal-->
+<div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-around">
+                        <h5 class="modal-title text-dark">Ønsker du at slette denne post?</h5>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal body -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="d-flex justify-content-center">
+                        <div id = "deletepost">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a onclick="anewsfeed.deletepostaccept()"><button type="button" id="close-modal" class="btn btn-success">Ja</button></a>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Nej</button>
+        </div>
+    </div>
+</div>
+<!--Modal end-->
+<!-- Optional JavaScript for bootstrap -->
+<script src="/js/plugins/serializejson.js"></script>
+<script src="/js/admin/anewsfeed.js"></script>
+<script src="/js/user/uapicaller.js"></script>
+</body>
+</html>

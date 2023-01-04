@@ -1,4 +1,5 @@
 package group.examdesign.controller;
+import group.examdesign.model.Profile;
 import group.examdesign.model.User;
 import group.examdesign.service.ProfileService;
 import group.examdesign.service.UserService;
@@ -6,6 +7,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +20,7 @@ public class UserController {
 
     private UserService userService;
     private ProfileService profileService;
+    private ProfileController profileController;
 
     @GetMapping("/findall")
     public ResponseEntity<List<User>> findAll() {
@@ -43,6 +48,8 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             userService.save(user);
+            Date sqlDate = java.sql.Date.valueOf(java.time.LocalDate.now());
+            profileController.save(user.getUsername(),sqlDate);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         }
     }

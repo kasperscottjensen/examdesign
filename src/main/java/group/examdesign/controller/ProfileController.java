@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 import java.util.*;
 
 @AllArgsConstructor
@@ -16,11 +18,12 @@ public class ProfileController {
 
     private ProfileService profileService;
     private UserService userService;
-
-    @PostMapping("/save")
-    public ResponseEntity<Profile> save(@RequestBody Profile profile) {
-        Optional<User> optUser = userService.findById(profile.getUsername());
+    public ResponseEntity<Profile> save(String username, Date date) {
+        Optional<User> optUser = userService.findById(username);
         if (optUser.isPresent()) {
+            Profile profile = new Profile();
+            profile.setUsername(username);
+            profile.setHired(date);
             profileService.save(profile);
             return new ResponseEntity<>(profile, HttpStatus.OK);
         } else {

@@ -1,7 +1,7 @@
 class Uformhandler{
     constructor() {
     }
-    savewish(){
+    saveprofile(){
 
     }
 }
